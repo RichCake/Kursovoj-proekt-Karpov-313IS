@@ -15,8 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QHBoxLayout, QListView, QPushButton,
-    QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QHBoxLayout, QListWidget, QListWidgetItem,
+    QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
+    QWidget)
 
 class Ui_Invoice_registry(object):
     def setupUi(self, Invoice_registry):
@@ -41,10 +42,10 @@ class Ui_Invoice_registry(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout)
 
-        self.listView = QListView(Invoice_registry)
-        self.listView.setObjectName(u"listView")
+        self.invoice_list = QListWidget(Invoice_registry)
+        self.invoice_list.setObjectName(u"invoice_list")
 
-        self.verticalLayout.addWidget(self.listView)
+        self.verticalLayout.addWidget(self.invoice_list)
 
         self.open_invoice_btn = QPushButton(Invoice_registry)
         self.open_invoice_btn.setObjectName(u"open_invoice_btn")

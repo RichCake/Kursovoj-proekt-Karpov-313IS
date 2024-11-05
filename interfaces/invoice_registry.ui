@@ -44,7 +44,7 @@
       </layout>
      </item>
      <item>
-      <widget class="QListView" name="listView"/>
+      <widget class="QListWidget" name="invoice_list"/>
      </item>
      <item>
       <widget class="QPushButton" name="open_invoice_btn">
