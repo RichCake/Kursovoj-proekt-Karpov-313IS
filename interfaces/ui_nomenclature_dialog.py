@@ -28,13 +28,16 @@ class Ui_Nomenclature_dialog(object):
         self.verticalLayout = QVBoxLayout(Nomenclature_dialog)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.tableWidget = QTableWidget(Nomenclature_dialog)
-        if (self.tableWidget.columnCount() < 2):
-            self.tableWidget.setColumnCount(2)
+        if (self.tableWidget.columnCount() < 3):
+            self.tableWidget.setColumnCount(3)
         __qtablewidgetitem = QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
+        __qtablewidgetitem2 = QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         self.tableWidget.setObjectName(u"tableWidget")
+        self.tableWidget.setSortingEnabled(False)
 
         self.verticalLayout.addWidget(self.tableWidget)
 
@@ -63,6 +66,7 @@ class Ui_Nomenclature_dialog(object):
         self.buttonBox.setObjectName(u"buttonBox")
         self.buttonBox.setOrientation(Qt.Orientation.Horizontal)
         self.buttonBox.setStandardButtons(QDialogButtonBox.StandardButton.Cancel|QDialogButtonBox.StandardButton.Ok)
+        self.buttonBox.setCenterButtons(False)
 
         self.verticalLayout.addWidget(self.buttonBox)
 
@@ -80,9 +84,11 @@ class Ui_Nomenclature_dialog(object):
     def retranslateUi(self, Nomenclature_dialog):
         Nomenclature_dialog.setWindowTitle(QCoreApplication.translate("Nomenclature_dialog", u"Dialog", None))
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("Nomenclature_dialog", u"\u041d\u0430\u0438\u043c\u0435\u043d\u043e\u0432\u0430\u043d\u0438\u0435", None));
+        ___qtablewidgetitem.setText(QCoreApplication.translate("Nomenclature_dialog", u"id", None));
         ___qtablewidgetitem1 = self.tableWidget.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("Nomenclature_dialog", u"\u0415\u0434\u0438\u043d\u0438\u0446\u0430 \u0438\u0437\u043c\u0435\u0440\u0435\u043d\u0438\u044f", None));
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("Nomenclature_dialog", u"\u041d\u0430\u0438\u043c\u0435\u043d\u043e\u0432\u0430\u043d\u0438\u0435", None));
+        ___qtablewidgetitem2 = self.tableWidget.horizontalHeaderItem(2)
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("Nomenclature_dialog", u"\u0415\u0434\u0438\u043d\u0438\u0446\u0430 \u0438\u0437\u043c\u0435\u0440\u0435\u043d\u0438\u044f", None));
         self.lineEdit.setPlaceholderText(QCoreApplication.translate("Nomenclature_dialog", u"\u041d\u0430\u0438\u043c\u0435\u043d\u043e\u0432\u0430\u043d\u0438\u0435", None))
         self.lineEdit_2.setText("")
         self.lineEdit_2.setPlaceholderText(QCoreApplication.translate("Nomenclature_dialog", u"\u0415\u0434. \u0438\u0437\u043c\u0435\u0440\u0435\u043d\u0438\u044f", None))

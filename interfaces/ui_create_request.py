@@ -82,14 +82,16 @@ class Ui_Create_request(object):
         self.verticalLayout.addLayout(self.horizontalLayout_2)
 
         self.tableWidget = QTableWidget(Create_request)
-        if (self.tableWidget.columnCount() < 3):
-            self.tableWidget.setColumnCount(3)
+        if (self.tableWidget.columnCount() < 4):
+            self.tableWidget.setColumnCount(4)
         __qtablewidgetitem = QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
         __qtablewidgetitem2 = QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
+        __qtablewidgetitem3 = QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(3, __qtablewidgetitem3)
         self.tableWidget.setObjectName(u"tableWidget")
 
         self.verticalLayout.addWidget(self.tableWidget)
@@ -109,10 +111,12 @@ class Ui_Create_request(object):
         self.add_nomenclature_btn.setText(QCoreApplication.translate("Create_request", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
         self.delete_nomenclature_btn.setText(QCoreApplication.translate("Create_request", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("Create_request", u"\u041d\u0430\u0438\u043c\u0435\u043d\u043e\u0432\u0430\u043d\u0438\u0435", None));
+        ___qtablewidgetitem.setText(QCoreApplication.translate("Create_request", u"id", None));
         ___qtablewidgetitem1 = self.tableWidget.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("Create_request", u"\u0415\u0434. \u0438\u0437\u043c.", None));
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("Create_request", u"\u041d\u0430\u0438\u043c\u0435\u043d\u043e\u0432\u0430\u043d\u0438\u0435", None));
         ___qtablewidgetitem2 = self.tableWidget.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("Create_request", u"\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e", None));
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("Create_request", u"\u0415\u0434. \u0438\u0437\u043c.", None));
+        ___qtablewidgetitem3 = self.tableWidget.horizontalHeaderItem(3)
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("Create_request", u"\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e", None));
     # retranslateUi
 
