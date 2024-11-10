@@ -15,8 +15,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QHBoxLayout, QListWidget, QListWidgetItem,
-    QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
+from PySide6.QtWidgets import (QApplication, QHBoxLayout, QHeaderView, QPushButton,
+    QSizePolicy, QSpacerItem, QTableView, QVBoxLayout,
     QWidget)
 
 class Ui_Request_registry(object):
@@ -42,7 +42,7 @@ class Ui_Request_registry(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout)
 
-        self.request_list = QListWidget(Request_registry)
+        self.request_list = QTableView(Request_registry)
         self.request_list.setObjectName(u"request_list")
 
         self.verticalLayout.addWidget(self.request_list)

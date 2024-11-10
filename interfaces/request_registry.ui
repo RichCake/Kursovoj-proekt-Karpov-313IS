@@ -44,7 +44,7 @@
       </layout>
      </item>
      <item>
-      <widget class="QListWidget" name="request_list"/>
+      <widget class="QTableView" name="request_list"/>
      </item>
      <item>
       <widget class="QPushButton" name="open_request_btn">

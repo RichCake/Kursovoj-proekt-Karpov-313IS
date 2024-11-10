@@ -3,6 +3,7 @@ import sys
 import os
 
 from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QStackedWidget
+from PySide6.QtSql import QSqlDatabase
 
 # Important:
 # You need to run the following command to generate the ui_form.py file
@@ -33,6 +34,9 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.database_file = os.path.join(BASE_DIR, "database.db")
+        self.db = QSqlDatabase.addDatabase("QSQLITE")
+        self.db.setDatabaseName("database.db")
+        self.db.open()
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
@@ -61,6 +65,13 @@ class MainWindow(QMainWindow):
 
     def open_menu(self):
         self.stacked_widget.setCurrentWidget(self.menu_widget)
+
+    def open_request_creation_with_data(self, request_id):
+        # Устанавливаем виджет создания заявки как активный
+        self.stacked_widget.setCurrentWidget(self.request_creation_widget)
+        
+        # Загружаем данные из базы данных и заполняем виджет
+        self.request_creation_widget.load_request_data(request_id)
 
 
 if __name__ == '__main__':

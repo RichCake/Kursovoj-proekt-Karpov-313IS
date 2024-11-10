@@ -2,6 +2,7 @@ import sqlite3
 import datetime as dt
 
 from PySide6.QtWidgets import QWidget, QDialog, QTableWidgetItem, QMessageBox
+from PySide6.QtSql import QSqlTableModel
 
 # Important:
 # You need to run the following command to generate the ui_form.py file
@@ -67,4 +68,29 @@ class CreateRequestWidget(QWidget):
         cur.executemany("INSERT INTO Request_items(amount, request_id, item_id) VALUES (?, ?, ?);", 
                         zip(amounts, request_ids, item_ids))
         con.commit()
+        con.close()
+
+    def load_request_data(self, request_id):
+        con = sqlite3.connect(self.parent.database_file)
+        cur = con.cursor()
+        
+        # Получаем основную информацию о заявке
+        request = cur.execute("SELECT description, created_at, status FROM Requests WHERE id = ?", (request_id,)).fetchone()
+        if request:
+            self.ui.description_text.setPlainText(request[0])
+            # Отображаем другие данные, если необходимо
+
+        # Очищаем таблицу и добавляем связанные позиции заявки
+        self.ui.tableWidget.setRowCount(0)
+        items = cur.execute("SELECT item_id, amount FROM Request_items WHERE request_id = ?", (request_id,)).fetchall()
+        for item_id, amount in items:
+            nomenclature = cur.execute("SELECT name, unit FROM Nomenclature WHERE id = ?", (item_id,)).fetchone()
+            if nomenclature:
+                row = self.ui.tableWidget.rowCount()
+                self.ui.tableWidget.setRowCount(row + 1)
+                self.ui.tableWidget.setItem(row, 0, QTableWidgetItem(str(item_id)))
+                self.ui.tableWidget.setItem(row, 1, QTableWidgetItem(nomenclature[0]))
+                self.ui.tableWidget.setItem(row, 2, QTableWidgetItem(nomenclature[1]))
+                self.ui.tableWidget.setItem(row, 3, QTableWidgetItem(str(amount)))
+        
         con.close()
