@@ -46,21 +46,24 @@ class CreateRequestWidget(QWidget):
         item_ids = [self.ui.tableWidget.item(row, 0).text() for row in range(rows)]
 
         if not description:
-            QMessageBox.critical(self, "Ошибка", "Вы не заполнили описание")
+            QMessageBox.warning(self, "Предупреждение", "Вы не заполнили описание")
             return
         elif not rows:
-            QMessageBox.critical(self, "Ошибка", "Вы не добавили номенклатуру")
+            QMessageBox.warning(self, "Предупреждение", "Вы не добавили номенклатуру")
             return
         elif not all(amounts):
-            QMessageBox.critical(self, "Ошибка", "Вы не указали `Количество` у некоторых позиций")
+            QMessageBox.warning(self, "Предупреждение", "Вы не указали `Количество` у некоторых позиций")
             return
         
         amounts = map(lambda item: item.text(), amounts)
 
         con = sqlite3.connect(self.parent.database_file)
         cur = con.cursor()
-        cur.execute("INSERT INTO Requests(description, created_at, status) VALUES (?, ?, ?);", 
-                    (description, created_at, status))
+        try:
+            cur.execute("INSERT INTO Requests(description, created_at, status, category_id, initiator_id) VALUES (?, ?, ?, ?, ?);", 
+                        (description, created_at, status, 1, 1))
+        except sqlite3.OperationalError as err:
+            QMessageBox.critical(self, "Неизвестная ошибка", str(err))
         
         request_id = cur.lastrowid
         request_ids = [str(request_id)] * rows
@@ -69,6 +72,8 @@ class CreateRequestWidget(QWidget):
                         zip(amounts, request_ids, item_ids))
         con.commit()
         con.close()
+
+        self.parent.tab_widget.setTabText(self.parent.tab_widget.currentIndex(), f"Заявка {request_id}")
 
     def load_request_data(self, request_id):
         con = sqlite3.connect(self.parent.database_file)
