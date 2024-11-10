@@ -37,6 +37,7 @@ class Ui_Nomenclature_dialog(object):
         __qtablewidgetitem2 = QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         self.tableWidget.setObjectName(u"tableWidget")
+        self.tableWidget.setEnabled(True)
         self.tableWidget.setSortingEnabled(False)
 
         self.verticalLayout.addWidget(self.tableWidget)
