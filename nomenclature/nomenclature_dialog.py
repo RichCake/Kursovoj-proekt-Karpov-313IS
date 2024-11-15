@@ -1,6 +1,6 @@
 import sqlite3
 
-from PySide6.QtWidgets import QDialog, QTableWidgetItem
+from PySide6.QtWidgets import QDialog, QTableWidgetItem, QTableView
 
 # Important:
 # You need to run the following command to generate the ui_form.py file
@@ -16,6 +16,9 @@ class NomenclatureDialog(QDialog):
         self.ui = Ui_Nomenclature_dialog()
         self.ui.setupUi(self)
         self.update_list()
+
+        self.ui.tableWidget.hideColumn(0)
+        self.ui.tableWidget.setEditTriggers(QTableView.EditTriggers.NoEditTriggers)
 
         self.ui.pushButton.clicked.connect(self.add_nomenclature)
         self.ui.buttonBox.accepted.connect(self.select_nomenclature)

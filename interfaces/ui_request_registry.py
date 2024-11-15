@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'request_registry.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.0
+## Created by: Qt User Interface Compiler version 6.7.3
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -32,12 +32,28 @@ class Ui_Request_registry(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.open_menu_btn = QPushButton(Request_registry)
         self.open_menu_btn.setObjectName(u"open_menu_btn")
+        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.GoHome))
+        self.open_menu_btn.setIcon(icon)
 
         self.horizontalLayout.addWidget(self.open_menu_btn)
+
+        self.refresh_btn = QPushButton(Request_registry)
+        self.refresh_btn.setObjectName(u"refresh_btn")
+        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ViewRefresh))
+        self.refresh_btn.setIcon(icon1)
+
+        self.horizontalLayout.addWidget(self.refresh_btn)
 
         self.horizontalSpacer = QSpacerItem(50, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
+
+        self.close_btn = QPushButton(Request_registry)
+        self.close_btn.setObjectName(u"close_btn")
+        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ApplicationExit))
+        self.close_btn.setIcon(icon2)
+
+        self.horizontalLayout.addWidget(self.close_btn)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout)
@@ -46,11 +62,6 @@ class Ui_Request_registry(object):
         self.request_list.setObjectName(u"request_list")
 
         self.verticalLayout.addWidget(self.request_list)
-
-        self.open_request_btn = QPushButton(Request_registry)
-        self.open_request_btn.setObjectName(u"open_request_btn")
-
-        self.verticalLayout.addWidget(self.open_request_btn)
 
 
         self.verticalLayout_2.addLayout(self.verticalLayout)
@@ -63,7 +74,8 @@ class Ui_Request_registry(object):
 
     def retranslateUi(self, Request_registry):
         Request_registry.setWindowTitle(QCoreApplication.translate("Request_registry", u"Form", None))
-        self.open_menu_btn.setText(QCoreApplication.translate("Request_registry", u"\u041c\u0435\u043d\u044e", None))
-        self.open_request_btn.setText(QCoreApplication.translate("Request_registry", u"\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u0437\u0430\u044f\u0432\u043a\u0443", None))
+        self.open_menu_btn.setText("")
+        self.refresh_btn.setText("")
+        self.close_btn.setText(QCoreApplication.translate("Request_registry", u"\u0417\u0430\u043a\u0440\u044b\u0442\u044c", None))
     # retranslateUi
 

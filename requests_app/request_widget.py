@@ -2,26 +2,32 @@ import sqlite3
 import datetime as dt
 
 from PySide6.QtWidgets import QWidget, QDialog, QTableWidgetItem, QMessageBox
-from PySide6.QtSql import QSqlTableModel
 
-# Important:
-# You need to run the following command to generate the ui_form.py file
-#     pyside6-uic menu.ui -o ui_form.py, or
-#     pyside2-uic menu.ui -o ui_form.py
-from interfaces.ui_create_request import Ui_Create_request
+from interfaces.ui_create_request import Ui_Request
 from nomenclature.nomenclature_dialog import NomenclatureDialog
+from requests_app.request_items_dialog import SelectRequestItemsDialog
+from requests_app.models import EditableDelegate
 
 
-class CreateRequestWidget(QWidget):
+class RequestWidget(QWidget):
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
-        self.ui = Ui_Create_request()
+        self.id = None
+        self.ui = Ui_Request()
         self.ui.setupUi(self)
+        self.ui.delete_btn.hide()
+        self.ui.date_lbl.setText("--.--.----")
+        self.ui.status_lbl.setText("---------")
+
+        self.ui.tableWidget.hideColumn(0)
 
         self.ui.add_nomenclature_btn.clicked.connect(self.open_nomenclature_dialog)
         self.ui.save_btn.clicked.connect(self.save_request)
         self.ui.menu_btn.clicked.connect(parent.open_menu)
+        self.ui.close_btn.clicked.connect(parent.close_current_tab)
+        self.ui.delete_btn.clicked.connect(self.delete_request)
+        self.ui.create_invoice_btn.clicked.connect(self.create_invoice)
 
     def open_nomenclature_dialog(self):
         dialog = NomenclatureDialog(self.parent)
@@ -37,25 +43,41 @@ class CreateRequestWidget(QWidget):
             self.ui.tableWidget.setItem(rows, 1, QTableWidgetItem(nomenclature[1]))
             self.ui.tableWidget.setItem(rows, 2, QTableWidgetItem(nomenclature[2]))
 
-    def save_request(self):
+    def set_is_created(self, id):
+        self.ui.save_btn.clicked.disconnect()
+        self.ui.save_btn.clicked.connect(self.update_request)
+        self.id = id
+        self.ui.delete_btn.show()
+
+    def set_uneditable_fields(self, date, status):
+        self.ui.date_lbl.setText(date.split(".")[0])
+        self.ui.status_lbl.setText(status)
+
+    def check_and_return_editable_fields(self):
         description = self.ui.description_text.toPlainText()
-        created_at = dt.datetime.now()
-        status = "Не согласовано"
         rows = self.ui.tableWidget.rowCount()
         amounts = [self.ui.tableWidget.item(row, 3) for row in range(rows)]
-        item_ids = [self.ui.tableWidget.item(row, 0).text() for row in range(rows)]
+        item_ids = None
 
         if not description:
             QMessageBox.warning(self, "Предупреждение", "Вы не заполнили описание")
-            return
         elif not rows:
             QMessageBox.warning(self, "Предупреждение", "Вы не добавили номенклатуру")
-            return
         elif not all(amounts):
             QMessageBox.warning(self, "Предупреждение", "Вы не указали `Количество` у некоторых позиций")
+        else:
+            amounts = map(lambda item: item.text(), amounts)
+            item_ids = [self.ui.tableWidget.item(row, 0).text() for row in range(rows)]
+
+        return description, rows, amounts, item_ids
+
+    def save_request(self):
+        description, rows, amounts, item_ids = self.check_and_return_editable_fields()
+        if not (description and rows and amounts):
             return
         
-        amounts = map(lambda item: item.text(), amounts)
+        created_at = dt.datetime.now()
+        status = "Не согласовано"
 
         con = sqlite3.connect(self.parent.database_file)
         cur = con.cursor()
@@ -74,6 +96,29 @@ class CreateRequestWidget(QWidget):
         con.close()
 
         self.parent.tab_widget.setTabText(self.parent.tab_widget.currentIndex(), f"Заявка {request_id}")
+        self.set_is_created(request_id)
+        self.set_uneditable_fields(str(created_at), status)
+
+    def update_request(self):
+        description, rows, amounts, item_ids = self.check_and_return_editable_fields()
+        if not (description and rows and amounts):
+            return
+        
+        con = sqlite3.connect(self.parent.database_file)
+        cur = con.cursor()
+        try:
+            cur.execute("UPDATE Requests SET description=? WHERE id=?;", (description, self.id))
+        except sqlite3.OperationalError as err:
+            QMessageBox.critical(self, "Неизвестная ошибка", str(err))
+        
+        request_ids = [str(self.id)] * rows
+
+        cur.execute("DELETE FROM Request_items WHERE request_id=?", (self.id,))
+        cur.executemany("INSERT INTO Request_items(amount, request_id, item_id) VALUES (?, ?, ?);", 
+                        zip(amounts, request_ids, item_ids))
+        con.commit()
+        con.close()
+
 
     def load_request_data(self, request_id):
         con = sqlite3.connect(self.parent.database_file)
@@ -83,7 +128,7 @@ class CreateRequestWidget(QWidget):
         request = cur.execute("SELECT description, created_at, status FROM Requests WHERE id = ?", (request_id,)).fetchone()
         if request:
             self.ui.description_text.setPlainText(request[0])
-            # Отображаем другие данные, если необходимо
+            self.set_uneditable_fields(str(request[1]), request[2])
 
         # Очищаем таблицу и добавляем связанные позиции заявки
         self.ui.tableWidget.setRowCount(0)
@@ -99,3 +144,35 @@ class CreateRequestWidget(QWidget):
                 self.ui.tableWidget.setItem(row, 3, QTableWidgetItem(str(amount)))
         
         con.close()
+        self.set_is_created(request_id)
+
+    def delete_request(self):
+        res = QMessageBox.warning(self, "Предупреждение", "Вы уверены, что хотите удалить объект?", QMessageBox.Yes, QMessageBox.No)
+        if res == QMessageBox.No:
+            return
+
+        con = sqlite3.connect(self.parent.database_file)
+        cur = con.cursor()
+        cur.execute("DELETE FROM Request_items WHERE request_id=?", (self.id,))
+        cur.execute("DELETE FROM Requests WHERE id=?", (self.id,))
+        con.commit()
+        con.close()
+
+        self.parent.close_current_tab()
+
+    def create_invoice(self):
+        if self.id:
+            self.update_request()
+        else:
+            res = QMessageBox.warning(self, "Предупреждение", "Для продолжения необходимо сохранить заявку. Продолжить?", QMessageBox.Yes, QMessageBox.No)
+            if res == QMessageBox.No:
+                return
+            self.save_request()
+        con = sqlite3.connect(self.parent.database_file)
+        cur = con.cursor()
+        request_item_ids = cur.execute("SELECT id FROM Request_items WHERE request_id=?", (self.id,)).fetchall()
+        con.close()
+        dialog = SelectRequestItemsDialog(self.parent)
+        dialog.load_items(request_item_ids)
+        if dialog.exec() == QDialog.Accepted:
+            self.parent.open_invoice_creation(dialog.request_item_ids)
