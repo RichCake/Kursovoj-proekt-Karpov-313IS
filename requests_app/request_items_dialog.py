@@ -36,6 +36,7 @@ class SelectRequestItemsDialog(QDialog):
             """, 
             *request_item_ids
         ).fetchall()
+        con.close()
         for request_item_id, amount, name, unit in items:
             row = self.ui.tableWidget.rowCount()
             self.ui.tableWidget.setRowCount(row + 1)

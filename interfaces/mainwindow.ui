@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -22,8 +25,93 @@
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_3"/>
+   <layout class="QVBoxLayout" name="verticalLayout_3">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="mouseTracking">
+           <bool>false</bool>
+          </property>
+          <property name="title">
+           <string>Заявки</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <widget class="QPushButton" name="request_registry_btn">
+             <property name="text">
+              <string>Реестр заявок</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="create_request_btn">
+             <property name="text">
+              <string>Создать зявку</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="accept_request_btn">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Согласовать заявки</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="title">
+           <string>Администрирование</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <item>
+            <widget class="QPushButton" name="user_registry_btn">
+             <property name="text">
+              <string>Пользователи</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

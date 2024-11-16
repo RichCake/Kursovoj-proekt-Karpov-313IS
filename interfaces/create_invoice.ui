@@ -246,6 +246,11 @@
      </column>
      <column>
       <property name="text">
+       <string>request_item_id</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
        <string>Наименование</string>
       </property>
      </column>

@@ -22,48 +22,28 @@ class Ui_Menu(object):
     def setupUi(self, Menu):
         if not Menu.objectName():
             Menu.setObjectName(u"Menu")
-        Menu.resize(400, 300)
+        Menu.resize(548, 356)
         self.verticalLayout_3 = QVBoxLayout(Menu)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.gridLayout = QGridLayout()
         self.gridLayout.setObjectName(u"gridLayout")
-        self.groupBox = QGroupBox(Menu)
-        self.groupBox.setObjectName(u"groupBox")
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.groupBox.sizePolicy().hasHeightForWidth())
-        self.groupBox.setSizePolicy(sizePolicy)
-        self.groupBox.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
-        self.groupBox.setCheckable(False)
-        self.verticalLayout = QVBoxLayout(self.groupBox)
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.invoice_registry_btn = QPushButton(self.groupBox)
-        self.invoice_registry_btn.setObjectName(u"invoice_registry_btn")
-        sizePolicy.setHeightForWidth(self.invoice_registry_btn.sizePolicy().hasHeightForWidth())
-        self.invoice_registry_btn.setSizePolicy(sizePolicy)
+        self.groupBox_3 = QGroupBox(Menu)
+        self.groupBox_3.setObjectName(u"groupBox_3")
+        self.verticalLayout_5 = QVBoxLayout(self.groupBox_3)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.user_registry_btn = QPushButton(self.groupBox_3)
+        self.user_registry_btn.setObjectName(u"user_registry_btn")
 
-        self.verticalLayout.addWidget(self.invoice_registry_btn)
-
-        self.create_invoice_btn = QPushButton(self.groupBox)
-        self.create_invoice_btn.setObjectName(u"create_invoice_btn")
-        sizePolicy.setHeightForWidth(self.create_invoice_btn.sizePolicy().hasHeightForWidth())
-        self.create_invoice_btn.setSizePolicy(sizePolicy)
-
-        self.verticalLayout.addWidget(self.create_invoice_btn)
-
-        self.accept_invoice_btn = QPushButton(self.groupBox)
-        self.accept_invoice_btn.setObjectName(u"accept_invoice_btn")
-        sizePolicy.setHeightForWidth(self.accept_invoice_btn.sizePolicy().hasHeightForWidth())
-        self.accept_invoice_btn.setSizePolicy(sizePolicy)
-
-        self.verticalLayout.addWidget(self.accept_invoice_btn)
+        self.verticalLayout_5.addWidget(self.user_registry_btn)
 
 
-        self.gridLayout.addWidget(self.groupBox, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.groupBox_3, 1, 1, 1, 1)
 
         self.groupBox_4 = QGroupBox(Menu)
         self.groupBox_4.setObjectName(u"groupBox_4")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.groupBox_4.sizePolicy().hasHeightForWidth())
         self.groupBox_4.setSizePolicy(sizePolicy)
         self.groupBox_4.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
@@ -110,7 +90,7 @@ class Ui_Menu(object):
         self.verticalLayout_2.addWidget(self.accept_request_btn)
 
 
-        self.gridLayout.addWidget(self.groupBox_2, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.groupBox_2, 0, 0, 1, 1)
 
 
         self.verticalLayout_3.addLayout(self.gridLayout)
@@ -123,10 +103,8 @@ class Ui_Menu(object):
 
     def retranslateUi(self, Menu):
         Menu.setWindowTitle(QCoreApplication.translate("Menu", u"Form", None))
-        self.groupBox.setTitle(QCoreApplication.translate("Menu", u"\u0421\u0447\u0435\u0442\u0430", None))
-        self.invoice_registry_btn.setText(QCoreApplication.translate("Menu", u"\u0420\u0435\u0435\u0441\u0442\u0440 \u0441\u0447\u0435\u0442\u043e\u0432", None))
-        self.create_invoice_btn.setText(QCoreApplication.translate("Menu", u"\u0421\u043e\u0437\u0434\u0430\u0442\u044c \u0441\u0447\u0435\u0442", None))
-        self.accept_invoice_btn.setText(QCoreApplication.translate("Menu", u"\u0421\u043e\u0433\u043b\u0430\u0441\u043e\u0432\u0430\u0442\u044c \u0441\u0447\u0435\u0442\u0430", None))
+        self.groupBox_3.setTitle(QCoreApplication.translate("Menu", u"\u0410\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435", None))
+        self.user_registry_btn.setText(QCoreApplication.translate("Menu", u"\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0438", None))
         self.groupBox_4.setTitle(QCoreApplication.translate("Menu", u"\u041e\u0442\u0447\u0435\u0442\u044b", None))
         self.report_btn.setText(QCoreApplication.translate("Menu", u"\u041e\u0442\u0447\u0435\u0442\u044b", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("Menu", u"\u0417\u0430\u044f\u0432\u043a\u0438", None))

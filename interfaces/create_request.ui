@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>699</width>
-    <height>512</height>
+    <width>807</width>
+    <height>564</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,16 +16,6 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
-     <item>
-      <widget class="QPushButton" name="menu_btn">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::GoHome"/>
-       </property>
-      </widget>
-     </item>
      <item>
       <widget class="QPushButton" name="save_btn">
        <property name="text">
@@ -83,6 +73,11 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="text">
           <string>Создано:</string>
          </property>
@@ -107,6 +102,11 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="text">
           <string>Статус:</string>
          </property>
@@ -116,6 +116,41 @@
         <widget class="QLabel" name="status_lbl">
          <property name="text">
           <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="send_btn">
+         <property name="text">
+          <string>Отправить...</string>
+         </property>
+         <property name="icon">
+          <iconset theme="QIcon::ThemeIcon::DocumentSend"/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Категория:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="category_combobox"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="category_dialog_btn">
+         <property name="text">
+          <string>Категории</string>
+         </property>
+         <property name="icon">
+          <iconset theme="QIcon::ThemeIcon::EditFind"/>
          </property>
         </widget>
        </item>
@@ -228,9 +263,9 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="create_invoice_btn">
+    <widget class="QPushButton" name="mark_done_btn">
      <property name="text">
-      <string>Ввести счет</string>
+      <string>Пометить выполненным</string>
      </property>
     </widget>
    </item>

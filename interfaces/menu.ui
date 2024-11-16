@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>548</width>
+    <height>356</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,60 +16,16 @@
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
-      <widget class="QGroupBox" name="groupBox">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
+     <item row="1" column="1">
+      <widget class="QGroupBox" name="groupBox_3">
        <property name="title">
-        <string>Счета</string>
+        <string>Администрирование</string>
        </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
-       </property>
-       <property name="checkable">
-        <bool>false</bool>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout">
+       <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
-         <widget class="QPushButton" name="invoice_registry_btn">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
+         <widget class="QPushButton" name="user_registry_btn">
           <property name="text">
-           <string>Реестр счетов</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="create_invoice_btn">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Создать счет</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="accept_invoice_btn">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Согласовать счета</string>
+           <string>Пользователи</string>
           </property>
          </widget>
         </item>
@@ -110,7 +66,7 @@
        </layout>
       </widget>
      </item>
-     <item row="0" column="1">
+     <item row="0" column="0">
       <widget class="QGroupBox" name="groupBox_2">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">

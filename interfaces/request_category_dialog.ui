@@ -1,73 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Nomenclature_dialog</class>
- <widget class="QDialog" name="Nomenclature_dialog">
+ <class>Request_category</class>
+ <widget class="QDialog" name="Request_category">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>522</width>
-    <height>379</height>
+    <width>512</width>
+    <height>347</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Выбор номенклатуры</string>
+   <string>Dialog</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QTableWidget" name="tableWidget">
-     <property name="enabled">
+    <widget class="QListWidget" name="category_list">
+     <property name="sortingEnabled">
       <bool>true</bool>
      </property>
-     <property name="sortingEnabled">
-      <bool>false</bool>
-     </property>
-     <column>
-      <property name="text">
-       <string>id</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Наименование</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Единица измерения</string>
-      </property>
-     </column>
     </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QLineEdit" name="lineEdit">
-       <property name="placeholderText">
-        <string>Наименование</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit_2">
+      <widget class="QLineEdit" name="name_edit">
        <property name="text">
         <string/>
        </property>
        <property name="placeholderText">
-        <string>Ед. измерения</string>
+        <string>Введите наименование...</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="add_btn">
        <property name="text">
-        <string>Сохранить</string>
-       </property>
-       <property name="default">
-        <bool>false</bool>
-       </property>
-       <property name="flat">
-        <bool>false</bool>
+        <string>Добавить</string>
        </property>
       </widget>
      </item>
@@ -81,9 +50,6 @@
      <property name="standardButtons">
       <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
      </property>
-     <property name="centerButtons">
-      <bool>false</bool>
-     </property>
     </widget>
    </item>
   </layout>
@@ -93,7 +59,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>Nomenclature_dialog</receiver>
+   <receiver>Request_category</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -109,7 +75,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>Nomenclature_dialog</receiver>
+   <receiver>Request_category</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

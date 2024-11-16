@@ -1,12 +1,12 @@
 import sqlite3
 import datetime as dt
 
-from PySide6.QtWidgets import QWidget, QDialog, QTableWidgetItem, QMessageBox
+from PySide6.QtWidgets import QWidget, QDialog, QTableWidgetItem, QMessageBox, QStatusBar
 
 from interfaces.ui_create_request import Ui_Request
 from nomenclature.nomenclature_dialog import NomenclatureDialog
-from requests_app.request_items_dialog import SelectRequestItemsDialog
-from requests_app.models import EditableDelegate
+from requests_app.request_category_dialog import RequestCategoryDialog
+from requests_app.accept_dialog import AcceptDialog
 
 
 class RequestWidget(QWidget):
@@ -17,17 +17,41 @@ class RequestWidget(QWidget):
         self.ui = Ui_Request()
         self.ui.setupUi(self)
         self.ui.delete_btn.hide()
+        self.ui.mark_done_btn.hide()
+        self.ui.send_btn.hide()
         self.ui.date_lbl.setText("--.--.----")
         self.ui.status_lbl.setText("---------")
+        self.setup_category_combobox()
 
         self.ui.tableWidget.hideColumn(0)
 
+        if not self.parent.purchaser:
+            self.ui.category_dialog_btn.hide()
+            self.ui.mark_done_btn.hide()
+
         self.ui.add_nomenclature_btn.clicked.connect(self.open_nomenclature_dialog)
+        self.ui.delete_nomenclature_btn.clicked.connect(self.delete_nomenclature_row)
         self.ui.save_btn.clicked.connect(self.save_request)
-        self.ui.menu_btn.clicked.connect(parent.open_menu)
         self.ui.close_btn.clicked.connect(parent.close_current_tab)
         self.ui.delete_btn.clicked.connect(self.delete_request)
-        self.ui.create_invoice_btn.clicked.connect(self.create_invoice)
+        self.ui.category_dialog_btn.clicked.connect(self.open_category_dialog)
+        self.ui.send_btn.clicked.connect(self.open_accept_dialog)
+        self.ui.mark_done_btn.clicked.connect(self.mark_done)
+
+    def setup_category_combobox(self):
+        con = sqlite3.connect(self.parent.database_file)
+        cur = con.cursor()
+        categories = cur.execute("SELECT name FROM Request_category").fetchall()
+        con.close()
+        self.ui.category_combobox.clear()
+        categories = list(map(lambda x: x[0], categories))
+        self.ui.category_combobox.insertItems(0, categories)
+
+    def open_category_dialog(self):
+        dialog = RequestCategoryDialog(self.parent)
+        if dialog.exec() == QDialog.Accepted:
+            self.setup_category_combobox()
+            self.ui.category_combobox.setCurrentText(dialog.category)
 
     def open_nomenclature_dialog(self):
         dialog = NomenclatureDialog(self.parent)
@@ -43,11 +67,17 @@ class RequestWidget(QWidget):
             self.ui.tableWidget.setItem(rows, 1, QTableWidgetItem(nomenclature[1]))
             self.ui.tableWidget.setItem(rows, 2, QTableWidgetItem(nomenclature[2]))
 
+    def delete_nomenclature_row(self):
+        self.ui.tableWidget.removeRow(self.ui.tableWidget.currentRow())
+
     def set_is_created(self, id):
         self.ui.save_btn.clicked.disconnect()
         self.ui.save_btn.clicked.connect(self.update_request)
         self.id = id
         self.ui.delete_btn.show()
+        self.ui.send_btn.show()
+        if self.parent.purchaser:
+            self.ui.mark_done_btn.show()
 
     def set_uneditable_fields(self, date, status):
         self.ui.date_lbl.setText(date.split(".")[0])
@@ -75,16 +105,19 @@ class RequestWidget(QWidget):
         description, rows, amounts, item_ids = self.check_and_return_editable_fields()
         if not (description and rows and amounts):
             return
+        category_name = self.ui.category_combobox.currentText()
         
         created_at = dt.datetime.now()
         status = "Не согласовано"
+        user_id = self.parent.user_id
 
         con = sqlite3.connect(self.parent.database_file)
         cur = con.cursor()
+        category_id = cur.execute("SELECT id FROM Request_category WHERE name=?", (category_name, )).fetchone()[0]
         try:
             cur.execute("INSERT INTO Requests(description, created_at, status, category_id, initiator_id) VALUES (?, ?, ?, ?, ?);", 
-                        (description, created_at, status, 1, 1))
-        except sqlite3.OperationalError as err:
+                        (description, created_at, status, category_id, user_id))
+        except sqlite3.Error as err:
             QMessageBox.critical(self, "Неизвестная ошибка", str(err))
         
         request_id = cur.lastrowid
@@ -98,16 +131,19 @@ class RequestWidget(QWidget):
         self.parent.tab_widget.setTabText(self.parent.tab_widget.currentIndex(), f"Заявка {request_id}")
         self.set_is_created(request_id)
         self.set_uneditable_fields(str(created_at), status)
+        self.parent.status_bar.showMessage("Заявка успешно сохранена", 3000)
 
     def update_request(self):
         description, rows, amounts, item_ids = self.check_and_return_editable_fields()
         if not (description and rows and amounts):
             return
+        category_name = self.ui.category_combobox.currentText()
         
         con = sqlite3.connect(self.parent.database_file)
         cur = con.cursor()
+        category_id = cur.execute("SELECT id FROM Request_category WHERE name=?", (category_name, )).fetchone()[0]
         try:
-            cur.execute("UPDATE Requests SET description=? WHERE id=?;", (description, self.id))
+            cur.execute("UPDATE Requests SET description=?, category_id=? WHERE id=?;", (description, category_id, self.id))
         except sqlite3.OperationalError as err:
             QMessageBox.critical(self, "Неизвестная ошибка", str(err))
         
@@ -118,6 +154,7 @@ class RequestWidget(QWidget):
                         zip(amounts, request_ids, item_ids))
         con.commit()
         con.close()
+        self.parent.status_bar.showMessage("Заявка успешно сохранена", 3000)
 
 
     def load_request_data(self, request_id):
@@ -125,9 +162,10 @@ class RequestWidget(QWidget):
         cur = con.cursor()
         
         # Получаем основную информацию о заявке
-        request = cur.execute("SELECT description, created_at, status FROM Requests WHERE id = ?", (request_id,)).fetchone()
+        request = cur.execute("SELECT Requests.description, Requests.created_at, Requests.status, Request_category.name FROM Requests LEFT JOIN Request_category ON Requests.category_id=Request_category.id WHERE Requests.id = ?;", (request_id,)).fetchone()
         if request:
             self.ui.description_text.setPlainText(request[0])
+            self.ui.category_combobox.setCurrentText(request[3])
             self.set_uneditable_fields(str(request[1]), request[2])
 
         # Очищаем таблицу и добавляем связанные позиции заявки
@@ -159,20 +197,39 @@ class RequestWidget(QWidget):
         con.close()
 
         self.parent.close_current_tab()
+        self.parent.status_bar.showMessage("Заявка успешно удалена", 3000)
 
-    def create_invoice(self):
-        if self.id:
-            self.update_request()
-        else:
-            res = QMessageBox.warning(self, "Предупреждение", "Для продолжения необходимо сохранить заявку. Продолжить?", QMessageBox.Yes, QMessageBox.No)
-            if res == QMessageBox.No:
+    def open_accept_dialog(self):
+        if not self.id:
+            ans = QMessageBox.warning(self, "Предупреждение", "Для продолжения необходимо сохранить объект")
+            if ans == QMessageBox.Ok:
+                self.save_request()
+            else:
                 return
+        dialog = AcceptDialog(self.parent)
+        if dialog.exec() == QDialog.Accepted:
+            approval_status = "Не согласовано"
+            con = sqlite3.connect(self.parent.database_file)
+            cur = con.cursor()
+
+            for stage_order, acceptor_id in enumerate(dialog.accepted_users):
+                cur.execute("INSERT INTO Request_approvals_stages(approval_status, stage_order, request_id, acceptor_id) VALUES (?, ?, ?, ?)", (approval_status, stage_order, self.id, acceptor_id))
+
+            con.commit()
+            con.close()
+        if not dialog.accepted_users:
+            self.parent.status_bar.showMessage("Не выбраны согласованты", 3000)
+        else:
+            self.parent.status_bar.showMessage("Заявка успешно отправлена на согласование", 3000)
+
+    def mark_done(self):
+        ans = QMessageBox(self, "Предупреждение", "Для продолжения необходимо сохранить объект")
+        if ans == QMessageBox.Ok:
             self.save_request()
         con = sqlite3.connect(self.parent.database_file)
         cur = con.cursor()
-        request_item_ids = cur.execute("SELECT id FROM Request_items WHERE request_id=?", (self.id,)).fetchall()
+        cur.execute("UPDATE Requests SET status=? WHERE id=?;", ("Выполнено", self.id))
+        con.commit()
         con.close()
-        dialog = SelectRequestItemsDialog(self.parent)
-        dialog.load_items(request_item_ids)
-        if dialog.exec() == QDialog.Accepted:
-            self.parent.open_invoice_creation(dialog.request_item_ids)
+
+        self.parent.status_bar.showMessage("Заявка помечена как Выполнена", 3000)

@@ -177,8 +177,8 @@ class Ui_Invoice(object):
         self.verticalLayout.addLayout(self.horizontalLayout_2)
 
         self.tableWidget = QTableWidget(Invoice)
-        if (self.tableWidget.columnCount() < 4):
-            self.tableWidget.setColumnCount(4)
+        if (self.tableWidget.columnCount() < 5):
+            self.tableWidget.setColumnCount(5)
         __qtablewidgetitem = QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
@@ -187,6 +187,8 @@ class Ui_Invoice(object):
         self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         __qtablewidgetitem3 = QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(3, __qtablewidgetitem3)
+        __qtablewidgetitem4 = QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(4, __qtablewidgetitem4)
         self.tableWidget.setObjectName(u"tableWidget")
 
         self.verticalLayout.addWidget(self.tableWidget)
@@ -215,10 +217,12 @@ class Ui_Invoice(object):
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("Invoice", u"id", None));
         ___qtablewidgetitem1 = self.tableWidget.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("Invoice", u"\u041d\u0430\u0438\u043c\u0435\u043d\u043e\u0432\u0430\u043d\u0438\u0435", None));
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("Invoice", u"request_item_id", None));
         ___qtablewidgetitem2 = self.tableWidget.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("Invoice", u"\u0415\u0434. \u0438\u0437\u043c.", None));
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("Invoice", u"\u041d\u0430\u0438\u043c\u0435\u043d\u043e\u0432\u0430\u043d\u0438\u0435", None));
         ___qtablewidgetitem3 = self.tableWidget.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("Invoice", u"\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e", None));
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("Invoice", u"\u0415\u0434. \u0438\u0437\u043c.", None));
+        ___qtablewidgetitem4 = self.tableWidget.horizontalHeaderItem(4)
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("Invoice", u"\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e", None));
     # retranslateUi
 

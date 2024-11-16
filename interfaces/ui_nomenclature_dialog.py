@@ -83,7 +83,7 @@ class Ui_Nomenclature_dialog(object):
     # setupUi
 
     def retranslateUi(self, Nomenclature_dialog):
-        Nomenclature_dialog.setWindowTitle(QCoreApplication.translate("Nomenclature_dialog", u"Dialog", None))
+        Nomenclature_dialog.setWindowTitle(QCoreApplication.translate("Nomenclature_dialog", u"\u0412\u044b\u0431\u043e\u0440 \u043d\u043e\u043c\u0435\u043d\u043a\u043b\u0430\u0442\u0443\u0440\u044b", None))
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("Nomenclature_dialog", u"id", None));
         ___qtablewidgetitem1 = self.tableWidget.horizontalHeaderItem(1)
