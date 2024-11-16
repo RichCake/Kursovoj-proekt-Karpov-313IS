@@ -1,7 +1,7 @@
 import sqlite3
 import datetime as dt
 
-from PySide6.QtWidgets import QWidget, QDialog, QTableWidgetItem, QMessageBox, QStatusBar
+from PySide6.QtWidgets import QWidget, QDialog, QTableWidgetItem, QMessageBox
 
 from interfaces.ui_create_request import Ui_Request
 from nomenclature.nomenclature_dialog import NomenclatureDialog
@@ -103,7 +103,8 @@ class RequestWidget(QWidget):
 
     def save_request(self):
         description, rows, amounts, item_ids = self.check_and_return_editable_fields()
-        if not (description and rows and amounts):
+        print(description, rows, amounts, item_ids)
+        if not (description and rows and all(amounts)):
             return
         category_name = self.ui.category_combobox.currentText()
         
