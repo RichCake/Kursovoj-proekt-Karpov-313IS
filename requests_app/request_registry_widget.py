@@ -60,8 +60,6 @@ class RequestRegistryWidget(QWidget):
         else:
             category_id = cur.execute("SELECT id FROM Request_category WHERE name=?", (category_name,)).fetchone()[0]
             self.model.setFilter(f"category_id={category_id} AND status='{status_name}'")
-            self.model.lastError().text()
-
 
         con.close()
         self.refresh_values()

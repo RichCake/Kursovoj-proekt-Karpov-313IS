@@ -103,7 +103,6 @@ class RequestWidget(QWidget):
 
     def save_request(self):
         description, rows, amounts, item_ids = self.check_and_return_editable_fields()
-        print(description, rows, amounts, item_ids)
         if not (description and rows and all(amounts)):
             return
         category_name = self.ui.category_combobox.currentText()
@@ -163,7 +162,15 @@ class RequestWidget(QWidget):
         cur = con.cursor()
         
         # Получаем основную информацию о заявке
-        request = cur.execute("SELECT Requests.description, Requests.created_at, Requests.status, Request_category.name FROM Requests LEFT JOIN Request_category ON Requests.category_id=Request_category.id WHERE Requests.id = ?;", (request_id,)).fetchone()
+        request = cur.execute("""
+                              SELECT 
+                                Requests.description, 
+                                Requests.created_at, 
+                                Requests.status, 
+                                Request_category.name 
+                              FROM Requests 
+                              LEFT JOIN Request_category ON Requests.category_id=Request_category.id 
+                              WHERE Requests.id = ?;""", (request_id,)).fetchone()
         if request:
             self.ui.description_text.setPlainText(request[0])
             self.ui.category_combobox.setCurrentText(request[3])
@@ -214,7 +221,10 @@ class RequestWidget(QWidget):
             cur = con.cursor()
 
             for stage_order, acceptor_id in enumerate(dialog.accepted_users):
-                cur.execute("INSERT INTO Request_approvals_stages(approval_status, stage_order, request_id, acceptor_id) VALUES (?, ?, ?, ?)", (approval_status, stage_order, self.id, acceptor_id))
+                cur.execute("""
+                            INSERT INTO Request_approvals_stages(approval_status, stage_order, request_id, acceptor_id) 
+                            VALUES (?, ?, ?, ?)
+                            """, (approval_status, stage_order if dialog.is_step_by_step else 1, self.id, acceptor_id))
 
             con.commit()
             con.close()

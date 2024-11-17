@@ -15,10 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractButton, QApplication, QDialog, QDialogButtonBox,
-    QHBoxLayout, QHeaderView, QLayout, QPushButton,
-    QSizePolicy, QSpacerItem, QTableView, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QAbstractButton, QApplication, QComboBox, QDialog,
+    QDialogButtonBox, QHBoxLayout, QHeaderView, QLabel,
+    QLayout, QPushButton, QSizePolicy, QSpacerItem,
+    QTableView, QVBoxLayout, QWidget)
 
 class Ui_Accept_dialog(object):
     def setupUi(self, Accept_dialog):
@@ -27,6 +27,28 @@ class Ui_Accept_dialog(object):
         Accept_dialog.resize(1055, 535)
         self.verticalLayout_2 = QVBoxLayout(Accept_dialog)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer)
+
+        self.label = QLabel(Accept_dialog)
+        self.label.setObjectName(u"label")
+
+        self.horizontalLayout_2.addWidget(self.label)
+
+        self.type_combo_box = QComboBox(Accept_dialog)
+        self.type_combo_box.addItem("")
+        self.type_combo_box.addItem("")
+        self.type_combo_box.setObjectName(u"type_combo_box")
+        self.type_combo_box.setMinimumSize(QSize(120, 0))
+
+        self.horizontalLayout_2.addWidget(self.type_combo_box)
+
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout_2)
+
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.user_table = QTableView(Accept_dialog)
@@ -115,6 +137,10 @@ class Ui_Accept_dialog(object):
 
     def retranslateUi(self, Accept_dialog):
         Accept_dialog.setWindowTitle(QCoreApplication.translate("Accept_dialog", u"\u041e\u0442\u043f\u0440\u0430\u0432\u0438\u0442\u044c \u043d\u0430 \u0441\u043e\u0433\u043b\u0430\u0441\u043e\u0432\u0430\u043d\u0438\u0435", None))
+        self.label.setText(QCoreApplication.translate("Accept_dialog", u"\u0422\u0438\u043f \u0441\u043e\u0433\u043b\u0430\u0441\u043e\u0432\u0430\u043d\u0438\u044f:", None))
+        self.type_combo_box.setItemText(0, QCoreApplication.translate("Accept_dialog", u"\u0412\u0441\u0435\u043c \u0441\u0440\u0430\u0437\u0443", None))
+        self.type_combo_box.setItemText(1, QCoreApplication.translate("Accept_dialog", u"\u041f\u043e \u043e\u0447\u0435\u0440\u0435\u0434\u0438", None))
+
         self.add_btn.setText("")
         self.remove_btn.setText("")
         self.up_btn.setText("")

@@ -136,6 +136,7 @@ class AcceptDialog(QDialog):
         self.ui.accept_table.selectRow(row2)
 
     def select_accept_users(self):
+        self.is_step_by_step = True if self.ui.type_combo_box.currentText() == "По очереди" else False
         """Сохраняет выбранных пользователей из accept_table."""
         selected_user_ids = []
         for row in range(self.accept_model.rowCount()):

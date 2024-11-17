@@ -8,11 +8,15 @@ from PySide6.QtSql import QSqlDatabase
 
 from interfaces.ui_mainwindow import Ui_MainWindow
 from interfaces.ui_auth_dialog import Ui_Auth_dialog
+from invoice_app.invoice_widget import InvoiceWidget
+from invoice_app.invoice_registry_widget import InvoiceRegistryWidget
+from invoice_app.accept_invoice_registry import AcceptInvoiceRegistry
 from requests_app.request_widget import RequestWidget
 from requests_app.request_registry_widget import RequestRegistryWidget
 from requests_app.accept_request_registry import AcceptRequestRegistry
 from users.user_registry_widget import UserRegistryWidget
 from users.user_widget import UserWidget
+from reports.reports_widget import ReportWidget
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -31,7 +35,11 @@ class AuthDialog(QDialog):
     def check_login_and_password(self, login, password):
         con = sqlite3.connect(self.parent.database_file)
         cur = con.cursor()
-        user = cur.execute("SELECT id, login, password, purchaser FROM Users WHERE login=? AND password=?;", (login, password)).fetchone()
+        user = cur.execute("""
+                           SELECT id, login, password, purchaser 
+                           FROM Users 
+                           WHERE login=? AND password=?;
+                           """, (login, password)).fetchone()
         con.close()
         return user
 
@@ -80,6 +88,10 @@ class MainWindow(QMainWindow):
         self.ui.request_registry_btn.clicked.connect(self.open_request_registry)
         self.ui.user_registry_btn.clicked.connect(self.open_user_registry)
         self.ui.accept_request_btn.clicked.connect(self.open_accept_request_registry)
+        self.ui.create_invoice_btn.clicked.connect(self.open_invoice_creation)
+        self.ui.invoice_registry_btn.clicked.connect(self.open_invoice_registry)
+        self.ui.accept_invoice_btn.clicked.connect(self.open_accept_invoice_registry)
+        self.ui.reports_btn.clicked.connect(self.open_reports_widget)
 
     def open_request_creation(self):
         request_creation_widget = RequestWidget(self)
@@ -120,6 +132,32 @@ class MainWindow(QMainWindow):
         accept_request_registry_widget = AcceptRequestRegistry(self)
         self.tab_widget.addTab(accept_request_registry_widget, "Согласовать заявки")
         self.tab_widget.setCurrentWidget(accept_request_registry_widget)
+
+    def open_invoice_registry(self):
+        w = InvoiceRegistryWidget(self)
+        self.tab_widget.addTab(w, "Реестр счетов")
+        self.tab_widget.setCurrentWidget(w)
+
+    def open_invoice_creation(self):
+        w = InvoiceWidget(self)
+        self.tab_widget.addTab(w, "Создание счета")
+        self.tab_widget.setCurrentWidget(w)
+    
+    def open_invoice_creation_with_data(self, invoice_id):
+        w = InvoiceWidget(self)
+        w.load_invoice_data(invoice_id)
+        self.tab_widget.addTab(w, f"Счет {invoice_id}")
+        self.tab_widget.setCurrentWidget(w)
+
+    def open_accept_invoice_registry(self):
+        w = AcceptInvoiceRegistry(self)
+        self.tab_widget.addTab(w, "Согласовать счета")
+        self.tab_widget.setCurrentWidget(w)
+
+    def open_reports_widget(self):
+        w = ReportWidget(self)
+        self.tab_widget.addTab(w, "Отчеты")
+        self.tab_widget.setCurrentWidget(w)
 
 
 if __name__ == '__main__':

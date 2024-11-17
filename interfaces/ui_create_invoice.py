@@ -24,29 +24,22 @@ class Ui_Invoice(object):
     def setupUi(self, Invoice):
         if not Invoice.objectName():
             Invoice.setObjectName(u"Invoice")
-        Invoice.resize(553, 428)
+        Invoice.resize(837, 658)
         self.verticalLayout = QVBoxLayout(Invoice)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.menu_btn = QPushButton(Invoice)
-        self.menu_btn.setObjectName(u"menu_btn")
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.GoHome))
-        self.menu_btn.setIcon(icon)
-
-        self.horizontalLayout_3.addWidget(self.menu_btn)
-
         self.save_btn = QPushButton(Invoice)
         self.save_btn.setObjectName(u"save_btn")
-        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentSave))
-        self.save_btn.setIcon(icon1)
+        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentSave))
+        self.save_btn.setIcon(icon)
 
         self.horizontalLayout_3.addWidget(self.save_btn)
 
         self.delete_btn = QPushButton(Invoice)
         self.delete_btn.setObjectName(u"delete_btn")
-        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
-        self.delete_btn.setIcon(icon2)
+        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
+        self.delete_btn.setIcon(icon1)
 
         self.horizontalLayout_3.addWidget(self.delete_btn)
 
@@ -56,49 +49,46 @@ class Ui_Invoice(object):
 
         self.close_btn = QPushButton(Invoice)
         self.close_btn.setObjectName(u"close_btn")
-        icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.WindowClose))
-        self.close_btn.setIcon(icon3)
+        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.WindowClose))
+        self.close_btn.setIcon(icon2)
 
         self.horizontalLayout_3.addWidget(self.close_btn)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_3)
 
-        self.horizontalLayout_7 = QHBoxLayout()
-        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
-        self.label_4 = QLabel(Invoice)
-        self.label_4.setObjectName(u"label_4")
-
-        self.horizontalLayout_7.addWidget(self.label_4)
-
-        self.num_edit = QLineEdit(Invoice)
-        self.num_edit.setObjectName(u"num_edit")
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.num_edit.sizePolicy().hasHeightForWidth())
-        self.num_edit.setSizePolicy(sizePolicy)
-
-        self.horizontalLayout_7.addWidget(self.num_edit)
-
-        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout_7.addItem(self.horizontalSpacer_4)
-
-
-        self.verticalLayout.addLayout(self.horizontalLayout_7)
-
         self.horizontalLayout_6 = QHBoxLayout()
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.label_2 = QLabel(Invoice)
-        self.label_2.setObjectName(u"label_2")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
+        self.label_5 = QLabel(Invoice)
+        self.label_5.setObjectName(u"label_5")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
+        self.label_5.setSizePolicy(sizePolicy)
+        font = QFont()
+        font.setBold(True)
+        self.label_5.setFont(font)
+
+        self.horizontalLayout_4.addWidget(self.label_5)
+
+        self.name_edit = QLineEdit(Invoice)
+        self.name_edit.setObjectName(u"name_edit")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
-        self.label_2.setSizePolicy(sizePolicy1)
+        sizePolicy1.setHeightForWidth(self.name_edit.sizePolicy().hasHeightForWidth())
+        self.name_edit.setSizePolicy(sizePolicy1)
+
+        self.horizontalLayout_4.addWidget(self.name_edit)
+
+        self.label_2 = QLabel(Invoice)
+        self.label_2.setObjectName(u"label_2")
+        sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
+        self.label_2.setSizePolicy(sizePolicy)
+        self.label_2.setFont(font)
 
         self.horizontalLayout_4.addWidget(self.label_2)
 
@@ -114,8 +104,9 @@ class Ui_Invoice(object):
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.label_3 = QLabel(Invoice)
         self.label_3.setObjectName(u"label_3")
-        sizePolicy1.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
-        self.label_3.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
+        self.label_3.setSizePolicy(sizePolicy)
+        self.label_3.setFont(font)
 
         self.horizontalLayout_5.addWidget(self.label_3)
 
@@ -123,6 +114,34 @@ class Ui_Invoice(object):
         self.status_lbl.setObjectName(u"status_lbl")
 
         self.horizontalLayout_5.addWidget(self.status_lbl)
+
+        self.send_btn = QPushButton(Invoice)
+        self.send_btn.setObjectName(u"send_btn")
+        icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentSend))
+        self.send_btn.setIcon(icon3)
+
+        self.horizontalLayout_5.addWidget(self.send_btn)
+
+        self.label_4 = QLabel(Invoice)
+        self.label_4.setObjectName(u"label_4")
+        font1 = QFont()
+        font1.setBold(True)
+        font1.setKerning(True)
+        self.label_4.setFont(font1)
+
+        self.horizontalLayout_5.addWidget(self.label_4)
+
+        self.vendor_lbl = QLabel(Invoice)
+        self.vendor_lbl.setObjectName(u"vendor_lbl")
+
+        self.horizontalLayout_5.addWidget(self.vendor_lbl)
+
+        self.vendor_btn = QPushButton(Invoice)
+        self.vendor_btn.setObjectName(u"vendor_btn")
+        icon4 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditFind))
+        self.vendor_btn.setIcon(icon4)
+
+        self.horizontalLayout_5.addWidget(self.vendor_btn)
 
         self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
@@ -155,15 +174,15 @@ class Ui_Invoice(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.add_nomenclature_btn = QPushButton(Invoice)
         self.add_nomenclature_btn.setObjectName(u"add_nomenclature_btn")
-        icon4 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListAdd))
-        self.add_nomenclature_btn.setIcon(icon4)
+        icon5 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListAdd))
+        self.add_nomenclature_btn.setIcon(icon5)
 
         self.horizontalLayout_2.addWidget(self.add_nomenclature_btn)
 
         self.delete_nomenclature_btn = QPushButton(Invoice)
         self.delete_nomenclature_btn.setObjectName(u"delete_nomenclature_btn")
-        icon5 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListRemove))
-        self.delete_nomenclature_btn.setIcon(icon5)
+        icon6 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListRemove))
+        self.delete_nomenclature_btn.setIcon(icon6)
         self.delete_nomenclature_btn.setCheckable(False)
         self.delete_nomenclature_btn.setFlat(False)
 
@@ -177,8 +196,8 @@ class Ui_Invoice(object):
         self.verticalLayout.addLayout(self.horizontalLayout_2)
 
         self.tableWidget = QTableWidget(Invoice)
-        if (self.tableWidget.columnCount() < 5):
-            self.tableWidget.setColumnCount(5)
+        if (self.tableWidget.columnCount() < 4):
+            self.tableWidget.setColumnCount(4)
         __qtablewidgetitem = QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
@@ -187,8 +206,6 @@ class Ui_Invoice(object):
         self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         __qtablewidgetitem3 = QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(3, __qtablewidgetitem3)
-        __qtablewidgetitem4 = QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(4, __qtablewidgetitem4)
         self.tableWidget.setObjectName(u"tableWidget")
 
         self.verticalLayout.addWidget(self.tableWidget)
@@ -201,28 +218,29 @@ class Ui_Invoice(object):
 
     def retranslateUi(self, Invoice):
         Invoice.setWindowTitle(QCoreApplication.translate("Invoice", u"Form", None))
-        self.menu_btn.setText("")
         self.save_btn.setText(QCoreApplication.translate("Invoice", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
         self.delete_btn.setText(QCoreApplication.translate("Invoice", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
         self.close_btn.setText(QCoreApplication.translate("Invoice", u"\u0417\u0430\u043a\u0440\u044b\u0442\u044c", None))
-        self.label_4.setText(QCoreApplication.translate("Invoice", u"\u041d\u043e\u043c\u0435\u0440:", None))
+        self.label_5.setText(QCoreApplication.translate("Invoice", u"\u041d\u043e\u043c\u0435\u0440:", None))
         self.label_2.setText(QCoreApplication.translate("Invoice", u"\u0421\u043e\u0437\u0434\u0430\u043d\u043e:", None))
         self.date_lbl.setText("")
         self.label_3.setText(QCoreApplication.translate("Invoice", u"\u0421\u0442\u0430\u0442\u0443\u0441:", None))
         self.status_lbl.setText("")
+        self.send_btn.setText(QCoreApplication.translate("Invoice", u"\u041e\u0442\u043f\u0440\u0430\u0432\u0438\u0442\u044c...", None))
+        self.label_4.setText(QCoreApplication.translate("Invoice", u"\u041a\u043e\u043d\u0442\u0440\u0430\u0433\u043d\u0435\u0442:", None))
+        self.vendor_lbl.setText("")
+        self.vendor_btn.setText(QCoreApplication.translate("Invoice", u"\u041a\u043e\u043d\u0442\u0440\u0430\u0433\u0435\u043d\u0442\u044b", None))
         self.label.setText(QCoreApplication.translate("Invoice", u"\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435:", None))
-        self.description_text.setPlaceholderText(QCoreApplication.translate("Invoice", u"\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0437\u0430\u044f\u0432\u043a\u0438...", None))
+        self.description_text.setPlaceholderText(QCoreApplication.translate("Invoice", u"\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0441\u0447\u0435\u0442\u0430...", None))
         self.add_nomenclature_btn.setText("")
         self.delete_nomenclature_btn.setText("")
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("Invoice", u"id", None));
         ___qtablewidgetitem1 = self.tableWidget.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("Invoice", u"request_item_id", None));
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("Invoice", u"\u041d\u0430\u0438\u043c\u0435\u043d\u043e\u0432\u0430\u043d\u0438\u0435", None));
         ___qtablewidgetitem2 = self.tableWidget.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("Invoice", u"\u041d\u0430\u0438\u043c\u0435\u043d\u043e\u0432\u0430\u043d\u0438\u0435", None));
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("Invoice", u"\u0415\u0434. \u0438\u0437\u043c.", None));
         ___qtablewidgetitem3 = self.tableWidget.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("Invoice", u"\u0415\u0434. \u0438\u0437\u043c.", None));
-        ___qtablewidgetitem4 = self.tableWidget.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("Invoice", u"\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e", None));
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("Invoice", u"\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e", None));
     # retranslateUi
 
