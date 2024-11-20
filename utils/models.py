@@ -16,6 +16,11 @@ class DateDelegate(QStyledItemDelegate):
                 # Возвращаем только дату
                 return date_time.date().toString("yyyy-MM-dd")
         return value
+    
+
+class ReadOnlyDelegate(QStyledItemDelegate):
+    def createEditor(self, parent, option, index):
+        return None
 
 
 class EditableDelegate(QStyledItemDelegate):

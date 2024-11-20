@@ -1,6 +1,6 @@
-from PySide6.QtWidgets import QDialog, QTableView, QMessageBox
-from PySide6.QtSql import QSqlRelationalTableModel
 from PySide6.QtGui import QStandardItem, QStandardItemModel
+from PySide6.QtSql import QSqlRelationalTableModel
+from PySide6.QtWidgets import QDialog, QMessageBox, QTableView
 
 from interfaces.ui_accept_dialog import Ui_Accept_dialog
 
@@ -42,6 +42,7 @@ class AcceptDialog(QDialog):
         self.ui.down_btn.clicked.connect(self.move_down)
 
         # Событие для подтверждения выбора
+        self.ui.buttonBox.accepted.disconnect()
         self.ui.buttonBox.accepted.connect(self.select_accept_users)
 
     def add_user(self):
@@ -142,5 +143,12 @@ class AcceptDialog(QDialog):
         for row in range(self.accept_model.rowCount()):
             user_id = self.accept_model.item(row, 0).text()
             selected_user_ids.append(int(user_id))
-
         self.accepted_users = selected_user_ids
+        if not self.accepted_users:
+            QMessageBox.warning(
+                self,
+                "Предупреждение",
+                "Выберете пользователей для согласования"
+            )
+            return
+        self.accept()

@@ -23,7 +23,7 @@ class Ui_Request_registry(object):
     def setupUi(self, Request_registry):
         if not Request_registry.objectName():
             Request_registry.setObjectName(u"Request_registry")
-        Request_registry.resize(529, 352)
+        Request_registry.resize(663, 457)
         self.verticalLayout = QVBoxLayout(Request_registry)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.horizontalLayout = QHBoxLayout()

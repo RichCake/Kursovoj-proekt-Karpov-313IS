@@ -4,7 +4,7 @@ from PySide6.QtWidgets import QWidget, QTableView
 from PySide6.QtSql import QSqlRelationalTableModel, QSqlRelation
 
 from interfaces.ui_request_registry import Ui_Request_registry
-from .models import DateDelegate
+from utils.models import DateDelegate
 
 
 class RequestRegistryWidget(QWidget):
@@ -20,8 +20,6 @@ class RequestRegistryWidget(QWidget):
         self.model.setRelation(5, QSqlRelation("Users", "id", "login"))
         if not self.parent.purchaser:
             self.model.setFilter(f"initiator_id={self.parent.user_id}")
-            self.ui.category_combobox.hide()
-            self.ui.label.hide()
         self.model.select()
 
         self.ui.request_list.setModel(self.model)
@@ -50,16 +48,28 @@ class RequestRegistryWidget(QWidget):
         cur = con.cursor()
 
         if category_name == "-" and status_name == "-":
-            self.model.setFilter("")
+            if not self.parent.purchaser:
+                self.model.setFilter(f"initiator_id={self.parent.user_id}")
+            else:
+                self.model.setFilter("")
             return
         elif status_name == "-":
             category_id = cur.execute("SELECT id FROM Request_category WHERE name=?", (category_name,)).fetchone()[0]
-            self.model.setFilter(f"category_id={category_id}")
+            if not self.parent.purchaser:
+                self.model.setFilter(f"category_id={category_id} AND initiator_id={self.parent.user_id}")
+            else:
+                self.model.setFilter(f"category_id={category_id}")
         elif category_name == "-":
-            self.model.setFilter(f"status='{status_name}'")
+            if not self.parent.purchaser:
+                self.model.setFilter(f"status='{status_name}' AND initiator_id={self.parent.user_id}")
+            else:
+                self.model.setFilter(f"status='{status_name}'")
         else:
             category_id = cur.execute("SELECT id FROM Request_category WHERE name=?", (category_name,)).fetchone()[0]
-            self.model.setFilter(f"category_id={category_id} AND status='{status_name}'")
+            if not self.parent.purchaser:
+                self.model.setFilter(f"category_id={category_id} AND status='{status_name}' AND initiator_id={self.parent.user_id}")
+            else:
+                self.model.setFilter(f"category_id={category_id} AND status='{status_name}'")
 
         con.close()
         self.refresh_values()

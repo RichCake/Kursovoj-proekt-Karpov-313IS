@@ -111,6 +111,16 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_5.addWidget(self.user_registry_btn)
 
+        self.contract_registry_btn = QPushButton(self.groupBox_3)
+        self.contract_registry_btn.setObjectName(u"contract_registry_btn")
+
+        self.verticalLayout_5.addWidget(self.contract_registry_btn)
+
+        self.vendor_btn = QPushButton(self.groupBox_3)
+        self.vendor_btn.setObjectName(u"vendor_btn")
+
+        self.verticalLayout_5.addWidget(self.vendor_btn)
+
 
         self.verticalLayout.addWidget(self.groupBox_3)
 
@@ -158,8 +168,10 @@ class Ui_MainWindow(object):
         self.invoice_registry_btn.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u0435\u0441\u0442\u0440 \u0441\u0447\u0435\u0442\u043e\u0432", None))
         self.create_invoice_btn.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0437\u0434\u0430\u0442\u044c \u0441\u0447\u0435\u0442", None))
         self.accept_invoice_btn.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0433\u043b\u0430\u0441\u043e\u0432\u0430\u0442\u044c \u0441\u0447\u0435\u0442\u0430", None))
-        self.groupBox_3.setTitle(QCoreApplication.translate("MainWindow", u"\u0410\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435", None))
+        self.groupBox_3.setTitle(QCoreApplication.translate("MainWindow", u"\u041d\u0421\u0418 ", None))
         self.user_registry_btn.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0438", None))
+        self.contract_registry_btn.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0433\u043e\u0432\u043e\u0440\u044b", None))
+        self.vendor_btn.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043e\u043d\u0442\u0440\u0430\u0433\u0435\u043d\u0442\u044b", None))
         self.groupBox_4.setTitle(QCoreApplication.translate("MainWindow", u"\u041e\u0442\u0447\u0435\u0442\u044b", None))
         self.reports_btn.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0442\u0447\u0435\u0442\u044b", None))
     # retranslateUi

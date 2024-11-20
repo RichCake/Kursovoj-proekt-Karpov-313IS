@@ -27,7 +27,11 @@ class RequestCategoryDialog(QDialog):
             QListWidgetItem(category[1], self.ui.category_list)
 
     def select_category(self):
-        self.category = self.ui.category_list.currentItem().text()
+        categories = self.ui.category_list.selectedItems()
+        if len(categories) != 1:
+            QMessageBox.warning(self, "Предупреждение", "Выберете одну категорию")
+            return
+        self.category = categories[0].text()
         self.accept()
 
     def add_category(self):

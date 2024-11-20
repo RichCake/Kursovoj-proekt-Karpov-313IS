@@ -1,5 +1,5 @@
 import sqlite3
-from PySide6.QtWidgets import QApplication, QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem, QPushButton
+from PySide6.QtWidgets import QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem, QPushButton
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 

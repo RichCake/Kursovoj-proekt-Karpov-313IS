@@ -45,6 +45,7 @@ class Ui_Auth_dialog(object):
 
         self.lineEdit_2 = QLineEdit(Auth_dialog)
         self.lineEdit_2.setObjectName(u"lineEdit_2")
+        self.lineEdit_2.setEchoMode(QLineEdit.EchoMode.Password)
 
         self.gridLayout.addWidget(self.lineEdit_2, 1, 1, 1, 1)
 

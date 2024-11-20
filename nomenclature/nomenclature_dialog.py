@@ -1,6 +1,6 @@
 import sqlite3
 
-from PySide6.QtWidgets import QDialog, QTableWidgetItem, QTableView
+from PySide6.QtWidgets import QDialog, QTableWidgetItem, QTableView, QMessageBox
 
 # Important:
 # You need to run the following command to generate the ui_form.py file
@@ -49,7 +49,11 @@ class NomenclatureDialog(QDialog):
             self.ui.lineEdit_2.clear()
 
     def select_nomenclature(self):
-        row = self.ui.tableWidget.currentRow()
+        items = self.ui.tableWidget.selectedItems()
+        if len(items) != 1:
+            QMessageBox.warning(self, "Предупреждение", "Выберете одну позицию")
+            return
+        row = items[0].row()
         nomenclature_id = self.ui.tableWidget.item(row, 0).text()
         if nomenclature_id:
             self.nomenclature_id = nomenclature_id

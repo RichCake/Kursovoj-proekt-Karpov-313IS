@@ -1,12 +1,12 @@
-import sqlite3
 import datetime as dt
+import sqlite3
 
-from PySide6.QtWidgets import QWidget, QTableView
-from PySide6.QtSql import QSqlRelationalTableModel, QSqlRelation
+from PySide6.QtSql import QSqlRelation, QSqlRelationalTableModel
+from PySide6.QtWidgets import QTableView, QWidget
 
 from interfaces.ui_accept_requests_registry import Ui_Accept_requests_registry
-from .models import DateDelegate
-from requests_app.request_widget import RequestWidget
+
+from utils.models import DateDelegate
 
 
 class AcceptRequestRegistry(QWidget):
@@ -51,14 +51,15 @@ class AcceptRequestRegistry(QWidget):
         self.ui.request_list.setItemDelegateForColumn(2, date_delegate)
         self.ui.request_list.resizeColumnsToContents()
 
-        self.request_widget = RequestWidget(self.parent)
-        self.request_widget.setDisabled(True)
-        self.ui.horizontalLayout_2.addWidget(self.request_widget)
+        # self.request_widget = RequestWidget(self.parent)
+        # self.request_widget.setDisabled(True)
+        # self.ui.horizontalLayout_2.addWidget(self.request_widget)
 
         self.ui.request_list.doubleClicked.connect(self.load_request)
         self.ui.accept_btn.clicked.connect(self.accept_request)
         self.ui.reject_btn.clicked.connect(self.reject_request)
         self.ui.refresh_btn.clicked.connect(self.refresh_list)
+        self.ui.close_btn.clicked.connect(parent.close_current_tab)
 
     def refresh_list(self):
         self.model.select()
@@ -69,7 +70,8 @@ class AcceptRequestRegistry(QWidget):
         if len(selected_rows) > 1:
             return
         request_id = self.model.data(selected_rows[0])
-        self.request_widget.load_request_data(request_id)
+        # self.request_widget.load_request_data(request_id)
+        self.parent.open_request_creation_with_data(request_id)
 
         self.parent.status_bar.showMessage("Заявка успешно выбрана", 3000)
 

@@ -104,6 +104,13 @@ class Ui_Request(object):
 
         self.horizontalLayout_5.addWidget(self.send_btn)
 
+        self.accept_viewer_btn = QPushButton(Request)
+        self.accept_viewer_btn.setObjectName(u"accept_viewer_btn")
+        icon4 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditFind))
+        self.accept_viewer_btn.setIcon(icon4)
+
+        self.horizontalLayout_5.addWidget(self.accept_viewer_btn)
+
         self.label_4 = QLabel(Request)
         self.label_4.setObjectName(u"label_4")
         self.label_4.setFont(font)
@@ -117,7 +124,6 @@ class Ui_Request(object):
 
         self.category_dialog_btn = QPushButton(Request)
         self.category_dialog_btn.setObjectName(u"category_dialog_btn")
-        icon4 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditFind))
         self.category_dialog_btn.setIcon(icon4)
 
         self.horizontalLayout_5.addWidget(self.category_dialog_btn)
@@ -210,6 +216,7 @@ class Ui_Request(object):
         self.label_3.setText(QCoreApplication.translate("Request", u"\u0421\u0442\u0430\u0442\u0443\u0441:", None))
         self.status_lbl.setText("")
         self.send_btn.setText(QCoreApplication.translate("Request", u"\u041e\u0442\u043f\u0440\u0430\u0432\u0438\u0442\u044c...", None))
+        self.accept_viewer_btn.setText(QCoreApplication.translate("Request", u"\u041f\u0440\u043e\u0446\u0435\u0441\u0441\u044b", None))
         self.label_4.setText(QCoreApplication.translate("Request", u"\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044f:", None))
         self.category_dialog_btn.setText(QCoreApplication.translate("Request", u"\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438", None))
         self.label.setText(QCoreApplication.translate("Request", u"\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435:", None))

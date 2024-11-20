@@ -130,6 +130,16 @@
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="accept_viewer_btn">
+         <property name="text">
+          <string>Процессы</string>
+         </property>
+         <property name="icon">
+          <iconset theme="QIcon::ThemeIcon::EditFind"/>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QLabel" name="label_4">
          <property name="font">
           <font>

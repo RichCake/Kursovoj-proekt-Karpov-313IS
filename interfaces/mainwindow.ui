@@ -133,13 +133,27 @@
            </sizepolicy>
           </property>
           <property name="title">
-           <string>Администрирование</string>
+           <string>НСИ </string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
            <item>
             <widget class="QPushButton" name="user_registry_btn">
              <property name="text">
               <string>Пользователи</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="contract_registry_btn">
+             <property name="text">
+              <string>Договоры</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="vendor_btn">
+             <property name="text">
+              <string>Контрагенты</string>
              </property>
             </widget>
            </item>

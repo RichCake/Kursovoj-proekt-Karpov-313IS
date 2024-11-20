@@ -15,6 +15,7 @@ class VenderDialog(QDialog):
         self.update_list()
 
         self.ui.add_btn.clicked.connect(self.add_vender)
+        self.ui.buttonBox.accepted.disconnect()
         self.ui.buttonBox.accepted.connect(self.select_vender)
 
     def update_list(self):
@@ -27,6 +28,10 @@ class VenderDialog(QDialog):
             QListWidgetItem(vender[1], self.ui.listWidget)
 
     def select_vender(self):
+        rows = self.ui.listWidget.selectedItems()
+        if len(rows) != 1:
+            QMessageBox.warning(self, "Предупреждение", "Выберите одного контрагента")
+            return
         self.vender = self.ui.listWidget.currentItem().text()
         self.accept()
 

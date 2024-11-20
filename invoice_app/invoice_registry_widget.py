@@ -1,10 +1,11 @@
 import sqlite3
 
-from PySide6.QtWidgets import QWidget, QTableView
-from PySide6.QtSql import QSqlRelationalTableModel, QSqlRelation
+from PySide6.QtCore import Qt
+from PySide6.QtSql import QSqlRelation, QSqlRelationalTableModel
+from PySide6.QtWidgets import QTableView, QWidget
 
 from interfaces.ui_invoice_registry import Ui_Invoice_registry
-from requests_app.models import DateDelegate
+from utils.models import DateDelegate
 
 
 class InvoiceRegistryWidget(QWidget):
@@ -16,14 +17,23 @@ class InvoiceRegistryWidget(QWidget):
 
         self.model = QSqlRelationalTableModel()
         self.model.setTable("Invoice")
-        self.model.setRelation(5, QSqlRelation("Vendor", "id", "name"))
-        self.model.setRelation(6, QSqlRelation("Users", "id", "login"))
+        self.model.setRelation(5, QSqlRelation("Users", "id", "login"))
         self.model.select()
 
         self.ui.invoice_list.setModel(self.model)
         self.ui.invoice_list.setEditTriggers(QTableView.EditTriggers.NoEditTriggers)
         self.ui.invoice_list.setSelectionBehavior(QTableView.SelectionBehavior.SelectRows)
         self.ui.invoice_list.hideColumn(0)
+        self.ui.invoice_list.hideColumn(6)
+        self.ui.invoice_list.hideColumn(7)
+        self.model.setHeaderData(1, Qt.Horizontal, "Номер")
+        self.model.setHeaderData(2, Qt.Horizontal, "Описание")
+        self.model.setHeaderData(3, Qt.Horizontal, "Дата создания")
+        self.model.setHeaderData(4, Qt.Horizontal, "Статус")
+        self.model.setHeaderData(5, Qt.Horizontal, "Закупщик")
+        self.model.setHeaderData(6, Qt.Horizontal, "Контрагент")
+        self.model.setHeaderData(7, Qt.Horizontal, "Файл")
+        self.model.setHeaderData(8, Qt.Horizontal, "Сумма")
         date_delegate = DateDelegate()
         self.ui.invoice_list.setItemDelegateForColumn(3, date_delegate)
         self.ui.invoice_list.resizeColumnsToContents()
