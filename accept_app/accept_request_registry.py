@@ -39,7 +39,7 @@ class AcceptRequestRegistry(QWidget):
         request_ids = cur.execute(query, (self.parent.user_id,)).fetchall()
         con.close()
 
-        self.model.setFilter(f"Requests.id IN ({", ".join(map(lambda x: str(x[0]), request_ids))})")
+        self.model.setFilter(f"Requests.id IN ({', '.join(map(lambda x: str(x[0]), request_ids))})")
         self.model.select()
 
         self.ui.request_list.setModel(self.model)
