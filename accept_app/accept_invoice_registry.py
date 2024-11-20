@@ -42,7 +42,7 @@ class AcceptInvoiceRegistry(QWidget):
         finally:
             con.close()
 
-        self.model.setFilter(f"Invoice.id IN ({", ".join(map(lambda x: str(x[0]), invoice_ids))})")
+        self.model.setFilter(f"Invoice.id IN ({', '.join(map(lambda x: str(x[0]), invoice_ids))})")
         self.model.select()
 
         self.ui.request_list.setModel(self.model)

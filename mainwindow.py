@@ -3,7 +3,6 @@ import sqlite3
 import sys
 from pathlib import Path
 
-import qdarkstyle
 from PySide6.QtCore import QFile, QTextStream
 from PySide6.QtSql import QSqlDatabase
 from PySide6.QtWidgets import (
