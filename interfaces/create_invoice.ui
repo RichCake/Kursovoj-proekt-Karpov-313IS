@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>837</width>
-    <height>658</height>
+    <width>759</width>
+    <height>574</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,18 +21,12 @@
        <property name="text">
         <string>Сохранить</string>
        </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::DocumentSave"/>
-       </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="delete_btn">
        <property name="text">
         <string>Удалить</string>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::EditDelete"/>
        </property>
       </widget>
      </item>
@@ -53,9 +47,6 @@
       <widget class="QPushButton" name="close_btn">
        <property name="text">
         <string>Закрыть</string>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::WindowClose"/>
        </property>
       </widget>
      </item>
@@ -146,9 +137,6 @@
        <property name="text">
         <string>Отправить...</string>
        </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::DocumentSend"/>
-       </property>
       </widget>
      </item>
      <item>
@@ -156,18 +144,12 @@
        <property name="text">
         <string>Процессы</string>
        </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::EditFind"/>
-       </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="file_btn">
        <property name="text">
         <string>Файл</string>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::MailAttachment"/>
        </property>
       </widget>
      </item>
@@ -213,9 +195,6 @@
        <property name="text">
         <string>Контрагенты</string>
        </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::EditFind"/>
-       </property>
       </widget>
      </item>
      <item>
@@ -245,9 +224,6 @@
        </property>
        <property name="text">
         <string>Договоры</string>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::EditFind"/>
        </property>
       </widget>
      </item>
@@ -295,20 +271,14 @@
      <item>
       <widget class="QPushButton" name="add_nomenclature_btn">
        <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::ListAdd"/>
+        <string>Добавить</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="delete_nomenclature_btn">
        <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::ListRemove"/>
+        <string>Удалить</string>
        </property>
        <property name="checkable">
         <bool>false</bool>

@@ -48,28 +48,22 @@ class Ui_FileDialog(object):
 
         self.attach_file = QPushButton(FileDialog)
         self.attach_file.setObjectName(u"attach_file")
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MailAttachment))
-        self.attach_file.setIcon(icon)
 
         self.verticalLayout.addWidget(self.attach_file)
 
         self.delete_file = QPushButton(FileDialog)
         self.delete_file.setObjectName(u"delete_file")
-        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
-        self.delete_file.setIcon(icon1)
 
         self.verticalLayout.addWidget(self.delete_file)
 
         self.open_file = QPushButton(FileDialog)
         self.open_file.setObjectName(u"open_file")
-        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentOpen))
-        self.open_file.setIcon(icon2)
 
         self.verticalLayout.addWidget(self.open_file)
 
         self.buttonBox = QDialogButtonBox(FileDialog)
         self.buttonBox.setObjectName(u"buttonBox")
-        self.buttonBox.setStandardButtons(QDialogButtonBox.StandardButton.Cancel|QDialogButtonBox.StandardButton.Ok)
+        self.buttonBox.setStandardButtons(QDialogButtonBox.StandardButton.Ok)
         self.buttonBox.setCenterButtons(False)
 
         self.verticalLayout.addWidget(self.buttonBox)

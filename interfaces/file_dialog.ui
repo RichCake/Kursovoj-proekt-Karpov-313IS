@@ -43,18 +43,12 @@
      <property name="text">
       <string>Прикрепить файл</string>
      </property>
-     <property name="icon">
-      <iconset theme="QIcon::ThemeIcon::MailAttachment"/>
-     </property>
     </widget>
    </item>
    <item>
     <widget class="QPushButton" name="delete_file">
      <property name="text">
       <string>Удалить файл</string>
-     </property>
-     <property name="icon">
-      <iconset theme="QIcon::ThemeIcon::EditDelete"/>
      </property>
     </widget>
    </item>
@@ -63,15 +57,12 @@
      <property name="text">
       <string>Открыть файл</string>
      </property>
-     <property name="icon">
-      <iconset theme="QIcon::ThemeIcon::DocumentOpen"/>
-     </property>
     </widget>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="standardButtons">
-      <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
+      <set>QDialogButtonBox::StandardButton::Ok</set>
      </property>
      <property name="centerButtons">
       <bool>false</bool>

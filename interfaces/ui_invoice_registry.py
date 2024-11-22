@@ -30,15 +30,11 @@ class Ui_Invoice_registry(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.refresh_btn = QPushButton(Invoice_registry)
         self.refresh_btn.setObjectName(u"refresh_btn")
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ViewRefresh))
-        self.refresh_btn.setIcon(icon)
 
         self.horizontalLayout.addWidget(self.refresh_btn)
 
         self.create_btn = QPushButton(Invoice_registry)
         self.create_btn.setObjectName(u"create_btn")
-        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListAdd))
-        self.create_btn.setIcon(icon1)
 
         self.horizontalLayout.addWidget(self.create_btn)
 
@@ -48,8 +44,6 @@ class Ui_Invoice_registry(object):
 
         self.close_btn = QPushButton(Invoice_registry)
         self.close_btn.setObjectName(u"close_btn")
-        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ApplicationExit))
-        self.close_btn.setIcon(icon2)
 
         self.horizontalLayout.addWidget(self.close_btn)
 
@@ -108,8 +102,8 @@ class Ui_Invoice_registry(object):
 
     def retranslateUi(self, Invoice_registry):
         Invoice_registry.setWindowTitle(QCoreApplication.translate("Invoice_registry", u"Form", None))
-        self.refresh_btn.setText("")
-        self.create_btn.setText("")
+        self.refresh_btn.setText(QCoreApplication.translate("Invoice_registry", u"\u041e\u0431\u043d\u043e\u0432\u0438\u0442\u044c", None))
+        self.create_btn.setText(QCoreApplication.translate("Invoice_registry", u"\u0421\u043e\u0437\u0434\u0430\u0442\u044c", None))
         self.close_btn.setText(QCoreApplication.translate("Invoice_registry", u"\u0417\u0430\u043a\u0440\u044b\u0442\u044c", None))
         self.label.setText(QCoreApplication.translate("Invoice_registry", u"\u041a\u043e\u043d\u0442\u0440\u0430\u0433\u0435\u043d\u0442:", None))
         self.label_2.setText(QCoreApplication.translate("Invoice_registry", u"\u0421\u0442\u0430\u0442\u0443\u0441:", None))

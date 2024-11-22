@@ -20,7 +20,6 @@ class FileDialog(QDialog):
         self.ui.delete_file.clicked.connect(self.delete_file)
         self.ui.open_file.clicked.connect(self.open_file)
         self.ui.buttonBox.accepted.connect(self.accept)
-        self.ui.buttonBox.rejected.connect(self.reject)
 
         self.load_file_path()
 

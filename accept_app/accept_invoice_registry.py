@@ -1,8 +1,9 @@
-import sqlite3
 import datetime as dt
+import sqlite3
 
-from PySide6.QtWidgets import QWidget, QTableView, QMessageBox
-from PySide6.QtSql import QSqlRelationalTableModel, QSqlRelation
+from PySide6.QtCore import Qt
+from PySide6.QtSql import QSqlRelation, QSqlRelationalTableModel
+from PySide6.QtWidgets import QMessageBox, QTableView, QWidget
 
 from interfaces.ui_accept_requests_registry import Ui_Accept_requests_registry
 from utils.models import DateDelegate
@@ -50,6 +51,15 @@ class AcceptInvoiceRegistry(QWidget):
         self.ui.request_list.setSelectionBehavior(QTableView.SelectionBehavior.SelectRows)
         self.ui.request_list.hideColumn(0)
         self.ui.request_list.hideColumn(6)
+        self.ui.request_list.hideColumn(7)
+        self.model.setHeaderData(1, Qt.Horizontal, "Номер")
+        self.model.setHeaderData(2, Qt.Horizontal, "Описание")
+        self.model.setHeaderData(3, Qt.Horizontal, "Дата создания")
+        self.model.setHeaderData(4, Qt.Horizontal, "Статус")
+        self.model.setHeaderData(5, Qt.Horizontal, "Закупщик")
+        self.model.setHeaderData(6, Qt.Horizontal, "Контрагент")
+        self.model.setHeaderData(7, Qt.Horizontal, "Файл")
+        self.model.setHeaderData(8, Qt.Horizontal, "Сумма")
         date_delegate = DateDelegate()
         self.ui.request_list.setItemDelegateForColumn(3, date_delegate)
         self.ui.request_list.resizeColumnsToContents()

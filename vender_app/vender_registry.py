@@ -19,9 +19,9 @@ class VenderRegistry(QWidget):
         self.update_list()
 
         self.ui.tableWidget.doubleClicked.connect(self.open_vender)
-        self.ui.close_btn_2.clicked.connect(parent.close_current_tab)
-        self.ui.refresh_btn_2.clicked.connect(self.update_list)
-        self.ui.create_btn_2.clicked.connect(parent.open_vender_creation)
+        self.ui.close_btn.clicked.connect(parent.close_current_tab)
+        self.ui.refresh_btn.clicked.connect(self.update_list)
+        self.ui.create_btn.clicked.connect(parent.open_vender_creation)
 
     def update_list(self):
         self.ui.tableWidget.clearContents()

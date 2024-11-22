@@ -30,15 +30,11 @@ class Ui_User_widget(object):
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.save_btn = QPushButton(User_widget)
         self.save_btn.setObjectName(u"save_btn")
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentSave))
-        self.save_btn.setIcon(icon)
 
         self.horizontalLayout_3.addWidget(self.save_btn)
 
         self.delete_btn = QPushButton(User_widget)
         self.delete_btn.setObjectName(u"delete_btn")
-        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
-        self.delete_btn.setIcon(icon1)
 
         self.horizontalLayout_3.addWidget(self.delete_btn)
 
@@ -48,8 +44,6 @@ class Ui_User_widget(object):
 
         self.close_btn = QPushButton(User_widget)
         self.close_btn.setObjectName(u"close_btn")
-        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.WindowClose))
-        self.close_btn.setIcon(icon2)
 
         self.horizontalLayout_3.addWidget(self.close_btn)
 

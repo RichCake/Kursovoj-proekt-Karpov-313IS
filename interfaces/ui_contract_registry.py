@@ -31,15 +31,11 @@ class Ui_ContractRegistry(object):
         self.refresh_btn = QPushButton(ContractRegistry)
         self.refresh_btn.setObjectName(u"refresh_btn")
         self.refresh_btn.setAutoFillBackground(False)
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ViewRefresh))
-        self.refresh_btn.setIcon(icon)
 
         self.horizontalLayout_2.addWidget(self.refresh_btn)
 
         self.create_btn = QPushButton(ContractRegistry)
         self.create_btn.setObjectName(u"create_btn")
-        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListAdd))
-        self.create_btn.setIcon(icon1)
 
         self.horizontalLayout_2.addWidget(self.create_btn)
 
@@ -49,8 +45,6 @@ class Ui_ContractRegistry(object):
 
         self.close_btn = QPushButton(ContractRegistry)
         self.close_btn.setObjectName(u"close_btn")
-        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ApplicationExit))
-        self.close_btn.setIcon(icon2)
 
         self.horizontalLayout_2.addWidget(self.close_btn)
 
@@ -58,14 +52,16 @@ class Ui_ContractRegistry(object):
         self.verticalLayout.addLayout(self.horizontalLayout_2)
 
         self.tableWidget = QTableWidget(ContractRegistry)
-        if (self.tableWidget.columnCount() < 3):
-            self.tableWidget.setColumnCount(3)
+        if (self.tableWidget.columnCount() < 4):
+            self.tableWidget.setColumnCount(4)
         __qtablewidgetitem = QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
         __qtablewidgetitem2 = QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
+        __qtablewidgetitem3 = QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(3, __qtablewidgetitem3)
         self.tableWidget.setObjectName(u"tableWidget")
         self.tableWidget.setSortingEnabled(True)
 
@@ -79,8 +75,8 @@ class Ui_ContractRegistry(object):
 
     def retranslateUi(self, ContractRegistry):
         ContractRegistry.setWindowTitle(QCoreApplication.translate("ContractRegistry", u"Form", None))
-        self.refresh_btn.setText("")
-        self.create_btn.setText("")
+        self.refresh_btn.setText(QCoreApplication.translate("ContractRegistry", u"\u041e\u0431\u043d\u043e\u0432\u0438\u0442\u044c", None))
+        self.create_btn.setText(QCoreApplication.translate("ContractRegistry", u"\u0421\u043e\u0437\u0434\u0430\u0442\u044c", None))
         self.close_btn.setText(QCoreApplication.translate("ContractRegistry", u"\u0417\u0430\u043a\u0440\u044b\u0442\u044c", None))
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("ContractRegistry", u"id", None));
@@ -88,5 +84,7 @@ class Ui_ContractRegistry(object):
         ___qtablewidgetitem1.setText(QCoreApplication.translate("ContractRegistry", u"\u041d\u043e\u043c\u0435\u0440", None));
         ___qtablewidgetitem2 = self.tableWidget.horizontalHeaderItem(2)
         ___qtablewidgetitem2.setText(QCoreApplication.translate("ContractRegistry", u"\u0414\u0430\u0442\u0430", None));
+        ___qtablewidgetitem3 = self.tableWidget.horizontalHeaderItem(3)
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("ContractRegistry", u"\u041a\u043e\u043d\u0442\u0440\u0430\u0433\u0435\u043d\u0442", None));
     # retranslateUi
 

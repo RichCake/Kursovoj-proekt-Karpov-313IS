@@ -80,7 +80,7 @@ class RequestWidget(QWidget):
         self.id = id
         self.ui.delete_btn.show()
         self.ui.send_btn.show()
-        self.ui.accept_viewer_btn.hide()
+        self.ui.accept_viewer_btn.show()
         if self.parent.purchaser:
             self.ui.mark_done_btn.show()
 

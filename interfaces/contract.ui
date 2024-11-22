@@ -21,18 +21,12 @@
        <property name="text">
         <string>Сохранить</string>
        </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::DocumentSave"/>
-       </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="delete_btn">
        <property name="text">
         <string>Удалить</string>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::EditDelete"/>
        </property>
       </widget>
      </item>
@@ -53,9 +47,6 @@
       <widget class="QPushButton" name="close_btn">
        <property name="text">
         <string>Закрыть</string>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::WindowClose"/>
        </property>
       </widget>
      </item>
@@ -148,9 +139,6 @@
          <property name="text">
           <string>Контрагенты</string>
          </property>
-         <property name="icon">
-          <iconset theme="QIcon::ThemeIcon::EditFind"/>
-         </property>
         </widget>
        </item>
        <item>
@@ -182,9 +170,6 @@
      <property name="text">
       <string>Прикрепить файл</string>
      </property>
-     <property name="icon">
-      <iconset theme="QIcon::ThemeIcon::MailAttachment"/>
-     </property>
     </widget>
    </item>
    <item>
@@ -192,18 +177,12 @@
      <property name="text">
       <string>Удалить файл</string>
      </property>
-     <property name="icon">
-      <iconset theme="QIcon::ThemeIcon::EditDelete"/>
-     </property>
     </widget>
    </item>
    <item>
     <widget class="QPushButton" name="open_file">
      <property name="text">
       <string>Открыть файл</string>
-     </property>
-     <property name="icon">
-      <iconset theme="QIcon::ThemeIcon::DocumentOpen"/>
      </property>
     </widget>
    </item>

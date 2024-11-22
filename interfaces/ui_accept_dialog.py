@@ -65,15 +65,11 @@ class Ui_Accept_dialog(object):
 
         self.add_btn = QPushButton(Accept_dialog)
         self.add_btn.setObjectName(u"add_btn")
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.GoNext))
-        self.add_btn.setIcon(icon)
 
         self.verticalLayout.addWidget(self.add_btn)
 
         self.remove_btn = QPushButton(Accept_dialog)
         self.remove_btn.setObjectName(u"remove_btn")
-        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.GoPrevious))
-        self.remove_btn.setIcon(icon1)
 
         self.verticalLayout.addWidget(self.remove_btn)
 
@@ -98,15 +94,11 @@ class Ui_Accept_dialog(object):
 
         self.up_btn = QPushButton(Accept_dialog)
         self.up_btn.setObjectName(u"up_btn")
-        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.GoUp))
-        self.up_btn.setIcon(icon2)
 
         self.verticalLayout_3.addWidget(self.up_btn)
 
         self.down_btn = QPushButton(Accept_dialog)
         self.down_btn.setObjectName(u"down_btn")
-        icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.GoDown))
-        self.down_btn.setIcon(icon3)
 
         self.verticalLayout_3.addWidget(self.down_btn)
 
@@ -141,9 +133,9 @@ class Ui_Accept_dialog(object):
         self.type_combo_box.setItemText(0, QCoreApplication.translate("Accept_dialog", u"\u0412\u0441\u0435\u043c \u0441\u0440\u0430\u0437\u0443", None))
         self.type_combo_box.setItemText(1, QCoreApplication.translate("Accept_dialog", u"\u041f\u043e \u043e\u0447\u0435\u0440\u0435\u0434\u0438", None))
 
-        self.add_btn.setText("")
-        self.remove_btn.setText("")
-        self.up_btn.setText("")
-        self.down_btn.setText("")
+        self.add_btn.setText(QCoreApplication.translate("Accept_dialog", u">", None))
+        self.remove_btn.setText(QCoreApplication.translate("Accept_dialog", u"<", None))
+        self.up_btn.setText(QCoreApplication.translate("Accept_dialog", u"/\\", None))
+        self.down_btn.setText(QCoreApplication.translate("Accept_dialog", u"\\/", None))
     # retranslateUi
 

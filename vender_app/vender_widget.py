@@ -34,6 +34,9 @@ class VenderWidget(QWidget):
         if self.vender_id is not None:
             self.model.setFilter(f"vender_id = {self.vender_id}")
             self.load_vendor_data()
+        else:
+            self.model.setFilter("vender_id = -1")
+
         self.model.select()
 
         # Настройка таблицы
@@ -76,8 +79,8 @@ class VenderWidget(QWidget):
         name = self.ui.name_edit.text().strip()
         address = self.ui.address_edit.text().strip()
 
-        if not name or not address:
-            QMessageBox.warning(self, "Ошибка", "Необходимо заполнить имя и адрес поставщика.")
+        if not name:
+            QMessageBox.warning(self, "Ошибка", "Вы не заполнили Наименование контрагента")
             return
 
         try:

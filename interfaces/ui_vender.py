@@ -30,15 +30,11 @@ class Ui_Form(object):
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.save_btn = QPushButton(Form)
         self.save_btn.setObjectName(u"save_btn")
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentSave))
-        self.save_btn.setIcon(icon)
 
         self.horizontalLayout_4.addWidget(self.save_btn)
 
         self.delete_btn = QPushButton(Form)
         self.delete_btn.setObjectName(u"delete_btn")
-        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
-        self.delete_btn.setIcon(icon1)
 
         self.horizontalLayout_4.addWidget(self.delete_btn)
 
@@ -48,8 +44,6 @@ class Ui_Form(object):
 
         self.close_btn = QPushButton(Form)
         self.close_btn.setObjectName(u"close_btn")
-        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.WindowClose))
-        self.close_btn.setIcon(icon2)
 
         self.horizontalLayout_4.addWidget(self.close_btn)
 
@@ -94,28 +88,22 @@ class Ui_Form(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.add_btn = QPushButton(Form)
         self.add_btn.setObjectName(u"add_btn")
-        icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListAdd))
-        self.add_btn.setIcon(icon3)
 
         self.horizontalLayout_2.addWidget(self.add_btn)
 
         self.remove_btn = QPushButton(Form)
         self.remove_btn.setObjectName(u"remove_btn")
-        icon4 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListRemove))
-        self.remove_btn.setIcon(icon4)
         self.remove_btn.setCheckable(False)
         self.remove_btn.setFlat(False)
 
         self.horizontalLayout_2.addWidget(self.remove_btn)
 
-        self.cansel_btn = QPushButton(Form)
-        self.cansel_btn.setObjectName(u"cansel_btn")
-        icon5 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditUndo))
-        self.cansel_btn.setIcon(icon5)
-        self.cansel_btn.setCheckable(False)
-        self.cansel_btn.setFlat(False)
+        self.cancel_btn = QPushButton(Form)
+        self.cancel_btn.setObjectName(u"cancel_btn")
+        self.cancel_btn.setCheckable(False)
+        self.cancel_btn.setFlat(False)
 
-        self.horizontalLayout_2.addWidget(self.cansel_btn)
+        self.horizontalLayout_2.addWidget(self.cancel_btn)
 
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
@@ -147,8 +135,8 @@ class Ui_Form(object):
         self.close_btn.setText(QCoreApplication.translate("Form", u"\u0417\u0430\u043a\u0440\u044b\u0442\u044c", None))
         self.label.setText(QCoreApplication.translate("Form", u"\u041d\u0430\u0438\u043c\u0435\u043d\u043e\u0432\u0430\u043d\u0438\u0435:", None))
         self.label_2.setText(QCoreApplication.translate("Form", u"\u0410\u0434\u0440\u0435\u0441:", None))
-        self.add_btn.setText("")
-        self.remove_btn.setText("")
-        self.cansel_btn.setText(QCoreApplication.translate("Form", u"\u0412\u0435\u0440\u043d\u0443\u0442\u044c", None))
+        self.add_btn.setText(QCoreApplication.translate("Form", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
+        self.remove_btn.setText(QCoreApplication.translate("Form", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
+        self.cancel_btn.setText(QCoreApplication.translate("Form", u"\u0412\u0435\u0440\u043d\u0443\u0442\u044c", None))
     # retranslateUi
 

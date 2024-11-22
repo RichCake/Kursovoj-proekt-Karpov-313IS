@@ -24,22 +24,18 @@ class Ui_Invoice(object):
     def setupUi(self, Invoice):
         if not Invoice.objectName():
             Invoice.setObjectName(u"Invoice")
-        Invoice.resize(837, 658)
+        Invoice.resize(759, 574)
         self.verticalLayout = QVBoxLayout(Invoice)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.save_btn = QPushButton(Invoice)
         self.save_btn.setObjectName(u"save_btn")
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentSave))
-        self.save_btn.setIcon(icon)
 
         self.horizontalLayout_3.addWidget(self.save_btn)
 
         self.delete_btn = QPushButton(Invoice)
         self.delete_btn.setObjectName(u"delete_btn")
-        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
-        self.delete_btn.setIcon(icon1)
 
         self.horizontalLayout_3.addWidget(self.delete_btn)
 
@@ -49,8 +45,6 @@ class Ui_Invoice(object):
 
         self.close_btn = QPushButton(Invoice)
         self.close_btn.setObjectName(u"close_btn")
-        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.WindowClose))
-        self.close_btn.setIcon(icon2)
 
         self.horizontalLayout_3.addWidget(self.close_btn)
 
@@ -110,22 +104,16 @@ class Ui_Invoice(object):
 
         self.send_btn = QPushButton(Invoice)
         self.send_btn.setObjectName(u"send_btn")
-        icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentSend))
-        self.send_btn.setIcon(icon3)
 
         self.horizontalLayout_4.addWidget(self.send_btn)
 
         self.accept_viewer_btn = QPushButton(Invoice)
         self.accept_viewer_btn.setObjectName(u"accept_viewer_btn")
-        icon4 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditFind))
-        self.accept_viewer_btn.setIcon(icon4)
 
         self.horizontalLayout_4.addWidget(self.accept_viewer_btn)
 
         self.file_btn = QPushButton(Invoice)
         self.file_btn.setObjectName(u"file_btn")
-        icon5 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MailAttachment))
-        self.file_btn.setIcon(icon5)
 
         self.horizontalLayout_4.addWidget(self.file_btn)
 
@@ -154,7 +142,6 @@ class Ui_Invoice(object):
 
         self.vendor_btn = QPushButton(Invoice)
         self.vendor_btn.setObjectName(u"vendor_btn")
-        self.vendor_btn.setIcon(icon4)
 
         self.horizontalLayout_7.addWidget(self.vendor_btn)
 
@@ -172,7 +159,6 @@ class Ui_Invoice(object):
         self.contract_btn = QPushButton(Invoice)
         self.contract_btn.setObjectName(u"contract_btn")
         self.contract_btn.setEnabled(True)
-        self.contract_btn.setIcon(icon4)
 
         self.horizontalLayout_7.addWidget(self.contract_btn)
 
@@ -204,15 +190,11 @@ class Ui_Invoice(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.add_nomenclature_btn = QPushButton(Invoice)
         self.add_nomenclature_btn.setObjectName(u"add_nomenclature_btn")
-        icon6 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListAdd))
-        self.add_nomenclature_btn.setIcon(icon6)
 
         self.horizontalLayout_2.addWidget(self.add_nomenclature_btn)
 
         self.delete_nomenclature_btn = QPushButton(Invoice)
         self.delete_nomenclature_btn.setObjectName(u"delete_nomenclature_btn")
-        icon7 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListRemove))
-        self.delete_nomenclature_btn.setIcon(icon7)
         self.delete_nomenclature_btn.setCheckable(False)
         self.delete_nomenclature_btn.setFlat(False)
 
@@ -294,8 +276,8 @@ class Ui_Invoice(object):
         self.contract_btn.setText(QCoreApplication.translate("Invoice", u"\u0414\u043e\u0433\u043e\u0432\u043e\u0440\u044b", None))
         self.label.setText(QCoreApplication.translate("Invoice", u"\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435:", None))
         self.description_text.setPlaceholderText(QCoreApplication.translate("Invoice", u"\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0441\u0447\u0435\u0442\u0430...", None))
-        self.add_nomenclature_btn.setText("")
-        self.delete_nomenclature_btn.setText("")
+        self.add_nomenclature_btn.setText(QCoreApplication.translate("Invoice", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
+        self.delete_nomenclature_btn.setText(QCoreApplication.translate("Invoice", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("Invoice", u"id", None));
         ___qtablewidgetitem1 = self.tableWidget.horizontalHeaderItem(1)

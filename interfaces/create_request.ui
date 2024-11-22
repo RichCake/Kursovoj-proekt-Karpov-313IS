@@ -21,18 +21,12 @@
        <property name="text">
         <string>Сохранить</string>
        </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::DocumentSave"/>
-       </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="delete_btn">
        <property name="text">
         <string>Удалить</string>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::EditDelete"/>
        </property>
       </widget>
      </item>
@@ -53,9 +47,6 @@
       <widget class="QPushButton" name="close_btn">
        <property name="text">
         <string>Закрыть</string>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::WindowClose"/>
        </property>
       </widget>
      </item>
@@ -124,18 +115,12 @@
          <property name="text">
           <string>Отправить...</string>
          </property>
-         <property name="icon">
-          <iconset theme="QIcon::ThemeIcon::DocumentSend"/>
-         </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="accept_viewer_btn">
          <property name="text">
           <string>Процессы</string>
-         </property>
-         <property name="icon">
-          <iconset theme="QIcon::ThemeIcon::EditFind"/>
          </property>
         </widget>
        </item>
@@ -158,9 +143,6 @@
         <widget class="QPushButton" name="category_dialog_btn">
          <property name="text">
           <string>Категории</string>
-         </property>
-         <property name="icon">
-          <iconset theme="QIcon::ThemeIcon::EditFind"/>
          </property>
         </widget>
        </item>
@@ -210,20 +192,14 @@
      <item>
       <widget class="QPushButton" name="add_nomenclature_btn">
        <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::ListAdd"/>
+        <string>Добавить</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="delete_nomenclature_btn">
        <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::ListRemove"/>
+        <string>Удалить</string>
        </property>
        <property name="checkable">
         <bool>false</bool>

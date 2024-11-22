@@ -30,15 +30,11 @@ class Ui_Contract(object):
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.save_btn = QPushButton(Contract)
         self.save_btn.setObjectName(u"save_btn")
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentSave))
-        self.save_btn.setIcon(icon)
 
         self.horizontalLayout_4.addWidget(self.save_btn)
 
         self.delete_btn = QPushButton(Contract)
         self.delete_btn.setObjectName(u"delete_btn")
-        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
-        self.delete_btn.setIcon(icon1)
 
         self.horizontalLayout_4.addWidget(self.delete_btn)
 
@@ -48,8 +44,6 @@ class Ui_Contract(object):
 
         self.close_btn = QPushButton(Contract)
         self.close_btn.setObjectName(u"close_btn")
-        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.WindowClose))
-        self.close_btn.setIcon(icon2)
 
         self.horizontalLayout_4.addWidget(self.close_btn)
 
@@ -116,8 +110,6 @@ class Ui_Contract(object):
 
         self.vendor_btn = QPushButton(Contract)
         self.vendor_btn.setObjectName(u"vendor_btn")
-        icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditFind))
-        self.vendor_btn.setIcon(icon3)
 
         self.horizontalLayout_3.addWidget(self.vendor_btn)
 
@@ -138,21 +130,16 @@ class Ui_Contract(object):
 
         self.attach_file = QPushButton(Contract)
         self.attach_file.setObjectName(u"attach_file")
-        icon4 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MailAttachment))
-        self.attach_file.setIcon(icon4)
 
         self.verticalLayout.addWidget(self.attach_file)
 
         self.delete_file = QPushButton(Contract)
         self.delete_file.setObjectName(u"delete_file")
-        self.delete_file.setIcon(icon1)
 
         self.verticalLayout.addWidget(self.delete_file)
 
         self.open_file = QPushButton(Contract)
         self.open_file.setObjectName(u"open_file")
-        icon5 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentOpen))
-        self.open_file.setIcon(icon5)
 
         self.verticalLayout.addWidget(self.open_file)
 

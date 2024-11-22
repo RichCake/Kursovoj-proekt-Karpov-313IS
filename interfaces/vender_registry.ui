@@ -15,32 +15,23 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="refresh_btn_2">
-       <property name="autoFillBackground">
-        <bool>false</bool>
-       </property>
+      <widget class="QPushButton" name="refresh_btn">
        <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::ViewRefresh"/>
+        <string>Обновить</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="create_btn_2">
+      <widget class="QPushButton" name="create_btn">
        <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::ListAdd"/>
+        <string>Создать</string>
        </property>
       </widget>
      </item>
      <item>
-      <spacer name="horizontalSpacer_2">
+      <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Orientation::Horizontal</enum>
        </property>
@@ -56,12 +47,9 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="close_btn_2">
+      <widget class="QPushButton" name="close_btn">
        <property name="text">
         <string>Закрыть</string>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::ApplicationExit"/>
        </property>
       </widget>
      </item>

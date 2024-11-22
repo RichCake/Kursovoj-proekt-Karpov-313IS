@@ -19,20 +19,14 @@
      <item>
       <widget class="QPushButton" name="refresh_btn">
        <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::ViewRefresh"/>
+        <string>Обновить</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="create_btn">
        <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::ListAdd"/>
+        <string>Создать</string>
        </property>
       </widget>
      </item>
@@ -56,9 +50,6 @@
       <widget class="QPushButton" name="close_btn">
        <property name="text">
         <string>Закрыть</string>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::ApplicationExit"/>
        </property>
       </widget>
      </item>

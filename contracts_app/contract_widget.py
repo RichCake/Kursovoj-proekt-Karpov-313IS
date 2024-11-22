@@ -1,5 +1,6 @@
 import sqlite3
 
+import PySide6.QtSql
 from PySide6.QtCore import QDate, QUrl
 from PySide6.QtGui import QDesktopServices
 from PySide6.QtWidgets import QDialog, QFileDialog, QMessageBox, QWidget
@@ -12,7 +13,7 @@ class ContractWidget(QWidget):
     def __init__(self, parent, contract_id=None):
         super().__init__()
         self.parent = parent
-        self.contract_id = contract_id  # ID редактируемого контракта (None, если создаем)
+        self.contract_id = contract_id
         self.ui = Ui_Contract()
         self.ui.setupUi(self)
         self.ui.delete_btn.hide()
@@ -57,13 +58,18 @@ class ContractWidget(QWidget):
         vendor_name = self.ui.vendor_lbl.text()
         file_path = self.ui.filename_lbl.text()
 
-        if not number or not vendor_name:
-            QMessageBox.warning(self, "Ошибка", "Номер и поставщик обязательны для заполнения.")
+        if not number:
+            QMessageBox.warning(self, "Ошибка", "Вы не заполнили номер договора")
+            return
+        if not vendor_name:
+            QMessageBox.warning(self, "Ошибка", "Вы не добавили контрагента")
+            return
+        if not date:
+            QMessageBox.warning(self, "Ошибка", "Вы не заполнили дату договора")
             return
 
         with sqlite3.connect(self.parent.database_file) as conn:
             cursor = conn.cursor()
-            # Получение ID поставщика
             cursor.execute("SELECT id FROM Vendor WHERE name = ?", (vendor_name,))
             vendor = cursor.fetchone()
             if not vendor:

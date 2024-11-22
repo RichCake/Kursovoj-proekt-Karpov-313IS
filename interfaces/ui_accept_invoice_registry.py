@@ -30,8 +30,6 @@ class Ui_Accept_invoice_registry(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.refresh_btn = QPushButton(Accept_invoice_registry)
         self.refresh_btn.setObjectName(u"refresh_btn")
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ViewRefresh))
-        self.refresh_btn.setIcon(icon)
 
         self.horizontalLayout.addWidget(self.refresh_btn)
 
@@ -41,8 +39,6 @@ class Ui_Accept_invoice_registry(object):
 
         self.close_btn = QPushButton(Accept_invoice_registry)
         self.close_btn.setObjectName(u"close_btn")
-        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ApplicationExit))
-        self.close_btn.setIcon(icon1)
 
         self.horizontalLayout.addWidget(self.close_btn)
 
@@ -51,10 +47,10 @@ class Ui_Accept_invoice_registry(object):
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.request_list = QTableView(Accept_invoice_registry)
-        self.request_list.setObjectName(u"request_list")
+        self.invoice_list = QTableView(Accept_invoice_registry)
+        self.invoice_list.setObjectName(u"invoice_list")
 
-        self.horizontalLayout_2.addWidget(self.request_list)
+        self.horizontalLayout_2.addWidget(self.invoice_list)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_2)
@@ -90,7 +86,7 @@ class Ui_Accept_invoice_registry(object):
 
     def retranslateUi(self, Accept_invoice_registry):
         Accept_invoice_registry.setWindowTitle(QCoreApplication.translate("Accept_invoice_registry", u"Form", None))
-        self.refresh_btn.setText("")
+        self.refresh_btn.setText(QCoreApplication.translate("Accept_invoice_registry", u"\u041e\u0431\u043d\u043e\u0432\u0438\u0442\u044c", None))
         self.close_btn.setText(QCoreApplication.translate("Accept_invoice_registry", u"\u0417\u0430\u043a\u0440\u044b\u0442\u044c", None))
         self.accept_btn.setText(QCoreApplication.translate("Accept_invoice_registry", u"\u0421\u043e\u0433\u043b\u0430\u0441\u043e\u0432\u0430\u0442\u044c", None))
         self.reject_btn.setText(QCoreApplication.translate("Accept_invoice_registry", u"\u041e\u0442\u043a\u043b\u043e\u043d\u0438\u0442\u044c", None))

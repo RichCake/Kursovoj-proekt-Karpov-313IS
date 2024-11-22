@@ -84,20 +84,14 @@
        <item>
         <widget class="QPushButton" name="add_btn">
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset theme="QIcon::ThemeIcon::GoNext"/>
+          <string>&gt;</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="remove_btn">
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset theme="QIcon::ThemeIcon::GoPrevious"/>
+          <string>&lt;</string>
          </property>
         </widget>
        </item>
@@ -140,20 +134,14 @@
        <item>
         <widget class="QPushButton" name="up_btn">
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset theme="QIcon::ThemeIcon::GoUp"/>
+          <string>/\</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="down_btn">
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset theme="QIcon::ThemeIcon::GoDown"/>
+          <string>\/</string>
          </property>
         </widget>
        </item>

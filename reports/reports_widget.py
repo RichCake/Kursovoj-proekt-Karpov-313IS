@@ -65,8 +65,9 @@ class Report2(QWidget):
         cursor.execute("""
                         SELECT Vendor.name, COUNT(*) 
                         FROM Invoice
-                        LEFT JOIN Vendor ON Invoice.vender_id = Vendor.id
-                        GROUP BY Invoice.vender_id
+                        LEFT JOIN Contracts ON Invoice.contract_id = Contracts.id
+                        LEFT JOIN Vendor ON Contracts.vender_id = Vendor.id
+                        GROUP BY Vendor.id
                         ORDER BY COUNT(*) DESC
                         LIMIT 10
                        """)
@@ -78,6 +79,7 @@ class Report2(QWidget):
         for row, (supplier, count) in enumerate(data):
             table.setItem(row, 0, QTableWidgetItem(supplier))
             table.setItem(row, 1, QTableWidgetItem(str(count)))
+        table.resizeColumnsToContents()
         layout.addWidget(table)
 
 

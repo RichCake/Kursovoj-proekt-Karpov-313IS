@@ -41,6 +41,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.exit_btn = QPushButton(self.centralwidget)
+        self.exit_btn.setObjectName(u"exit_btn")
+
+        self.verticalLayout.addWidget(self.exit_btn)
+
         self.groupBox_2 = QGroupBox(self.centralwidget)
         self.groupBox_2.setObjectName(u"groupBox_2")
         sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
@@ -49,6 +54,7 @@ class Ui_MainWindow(object):
         sizePolicy1.setHeightForWidth(self.groupBox_2.sizePolicy().hasHeightForWidth())
         self.groupBox_2.setSizePolicy(sizePolicy1)
         self.groupBox_2.setMouseTracking(False)
+        self.groupBox_2.setStyleSheet(u"")
         self.groupBox_2.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
         self.groupBox_2.setCheckable(False)
         self.verticalLayout_2 = QVBoxLayout(self.groupBox_2)
@@ -160,9 +166,10 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u0421\u0438\u0441\u0442\u0435\u043c\u0430 \"\u041e\u0442\u0434\u0435\u043b \u0441\u043d\u0430\u0431\u0436\u0435\u043d\u0438\u044f\"", None))
+        self.exit_btn.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u0439\u0442\u0438", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u044f\u0432\u043a\u0438", None))
         self.request_registry_btn.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u0435\u0441\u0442\u0440 \u0437\u0430\u044f\u0432\u043e\u043a", None))
-        self.create_request_btn.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0437\u0434\u0430\u0442\u044c \u0437\u044f\u0432\u043a\u0443", None))
+        self.create_request_btn.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0437\u0434\u0430\u0442\u044c \u0437\u0430\u044f\u0432\u043a\u0443", None))
         self.accept_request_btn.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0433\u043b\u0430\u0441\u043e\u0432\u0430\u0442\u044c \u0437\u0430\u044f\u0432\u043a\u0438", None))
         self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"\u0421\u0447\u0435\u0442\u0430", None))
         self.invoice_registry_btn.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u0435\u0441\u0442\u0440 \u0441\u0447\u0435\u0442\u043e\u0432", None))

@@ -13,6 +13,7 @@ from PySide6.QtWidgets import (
     QTabWidget,
 )
 
+from create_db import create_db
 from accept_app.accept_invoice_registry import AcceptInvoiceRegistry
 from accept_app.accept_invoice_viewer import AcceptInvoiceWidget
 from accept_app.accept_request_registry import AcceptRequestRegistry
@@ -72,6 +73,8 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.database_file = os.path.join(BASE_DIR, "database.db")
+        if not os.path.isfile(self.database_file):
+            create_db(self.database_file)
         dialog = AuthDialog(self)
         if dialog.exec() == QDialog.Accepted:
             self.user_login = dialog.user
@@ -110,6 +113,12 @@ class MainWindow(QMainWindow):
         self.ui.reports_btn.clicked.connect(self.open_reports_widget)
         self.ui.contract_registry_btn.clicked.connect(self.open_contract_registry)
         self.ui.vendor_btn.clicked.connect(self.open_vender_registry)
+        self.ui.exit_btn.clicked.connect(self.exit_app)
+
+    def exit_app(self):
+        ans = QMessageBox.warning(self, "Предупреждение", "Вы хотите выйти из приложения?", QMessageBox.Yes | QMessageBox.No)
+        if ans == QMessageBox.Yes:
+            sys.exit()
 
     def open_request_creation(self):
         request_creation_widget = RequestWidget(self)
@@ -179,12 +188,12 @@ class MainWindow(QMainWindow):
 
     def open_contract_registry(self):
         w = ContractRegistry(self)
-        self.tab_widget.addTab(w, "Реестр контрактов")
+        self.tab_widget.addTab(w, "Реестр договоров")
         self.tab_widget.setCurrentWidget(w)
 
     def open_contract_creation(self):
         w = ContractWidget(self)
-        self.tab_widget.addTab(w, "Создание контракта")
+        self.tab_widget.addTab(w, "Создание договора")
         self.tab_widget.setCurrentWidget(w)
 
     def open_contract_with_data(self, contract_id):

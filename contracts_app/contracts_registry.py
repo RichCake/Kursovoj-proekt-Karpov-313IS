@@ -31,13 +31,14 @@ class ContractRegistry(QWidget):
         self.ui.tableWidget.setRowCount(0)
         con = sqlite3.connect(self.parent.database_file)
         cur = con.cursor()
-        contracts = cur.execute("SELECT id, number, date FROM Contracts;").fetchall()
+        contracts = cur.execute("SELECT Contracts.id, Contracts.number, Contracts.date, Vendor.name FROM Contracts LEFT JOIN Vendor ON Contracts.vender_id = Vendor.id;").fetchall()
         con.close()
         self.ui.tableWidget.setRowCount(len(contracts))
         for row, contract in enumerate(contracts):
             self.ui.tableWidget.setItem(row, 0, QTableWidgetItem(str(contract[0])))
             self.ui.tableWidget.setItem(row, 1, QTableWidgetItem(str(contract[1])))
             self.ui.tableWidget.setItem(row, 2, QTableWidgetItem(str(contract[2])))
+            self.ui.tableWidget.setItem(row, 3, QTableWidgetItem(str(contract[3])))
         self.ui.tableWidget.resizeColumnsToContents()
 
     def open_contract(self, index):

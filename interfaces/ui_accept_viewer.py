@@ -34,8 +34,6 @@ class Ui_AcceptViewer(object):
 
         self.close_btn = QPushButton(AcceptViewer)
         self.close_btn.setObjectName(u"close_btn")
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ApplicationExit))
-        self.close_btn.setIcon(icon)
 
         self.horizontalLayout.addWidget(self.close_btn)
 
@@ -50,15 +48,11 @@ class Ui_AcceptViewer(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.add_btn = QPushButton(AcceptViewer)
         self.add_btn.setObjectName(u"add_btn")
-        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListAdd))
-        self.add_btn.setIcon(icon1)
 
         self.horizontalLayout_2.addWidget(self.add_btn)
 
         self.remove_btn = QPushButton(AcceptViewer)
         self.remove_btn.setObjectName(u"remove_btn")
-        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListRemove))
-        self.remove_btn.setIcon(icon2)
         self.remove_btn.setCheckable(False)
         self.remove_btn.setFlat(False)
 
@@ -66,8 +60,6 @@ class Ui_AcceptViewer(object):
 
         self.cancel_btn = QPushButton(AcceptViewer)
         self.cancel_btn.setObjectName(u"cancel_btn")
-        icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditUndo))
-        self.cancel_btn.setIcon(icon3)
         self.cancel_btn.setCheckable(False)
         self.cancel_btn.setFlat(False)
 
@@ -75,8 +67,6 @@ class Ui_AcceptViewer(object):
 
         self.save_btn = QPushButton(AcceptViewer)
         self.save_btn.setObjectName(u"save_btn")
-        icon4 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentSave))
-        self.save_btn.setIcon(icon4)
 
         self.horizontalLayout_2.addWidget(self.save_btn)
 
@@ -101,8 +91,8 @@ class Ui_AcceptViewer(object):
     def retranslateUi(self, AcceptViewer):
         AcceptViewer.setWindowTitle(QCoreApplication.translate("AcceptViewer", u"Form", None))
         self.close_btn.setText(QCoreApplication.translate("AcceptViewer", u"\u0417\u0430\u043a\u0440\u044b\u0442\u044c", None))
-        self.add_btn.setText("")
-        self.remove_btn.setText("")
+        self.add_btn.setText(QCoreApplication.translate("AcceptViewer", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
+        self.remove_btn.setText(QCoreApplication.translate("AcceptViewer", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
         self.cancel_btn.setText(QCoreApplication.translate("AcceptViewer", u"\u0412\u0435\u0440\u043d\u0443\u0442\u044c", None))
         self.save_btn.setText(QCoreApplication.translate("AcceptViewer", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
     # retranslateUi

@@ -34,9 +34,6 @@
        <property name="text">
         <string>Закрыть</string>
        </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::ApplicationExit"/>
-       </property>
       </widget>
      </item>
     </layout>
@@ -59,20 +56,14 @@
      <item>
       <widget class="QPushButton" name="add_btn">
        <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::ListAdd"/>
+        <string>Добавить</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="remove_btn">
        <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::ListRemove"/>
+        <string>Удалить</string>
        </property>
        <property name="checkable">
         <bool>false</bool>
@@ -87,9 +78,6 @@
        <property name="text">
         <string>Вернуть</string>
        </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::EditUndo"/>
-       </property>
        <property name="checkable">
         <bool>false</bool>
        </property>
@@ -102,9 +90,6 @@
       <widget class="QPushButton" name="save_btn">
        <property name="text">
         <string>Сохранить</string>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::DocumentSave"/>
        </property>
       </widget>
      </item>

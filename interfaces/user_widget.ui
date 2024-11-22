@@ -21,18 +21,12 @@
        <property name="text">
         <string>Сохранить</string>
        </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::DocumentSave"/>
-       </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="delete_btn">
        <property name="text">
         <string>Удалить</string>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::EditDelete"/>
        </property>
       </widget>
      </item>
@@ -53,9 +47,6 @@
       <widget class="QPushButton" name="close_btn">
        <property name="text">
         <string>Закрыть</string>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::WindowClose"/>
        </property>
       </widget>
      </item>

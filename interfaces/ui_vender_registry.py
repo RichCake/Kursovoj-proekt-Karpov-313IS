@@ -26,36 +26,29 @@ class Ui_VenderRegistry(object):
         VenderRegistry.resize(560, 421)
         self.verticalLayout = QVBoxLayout(VenderRegistry)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.horizontalLayout_3 = QHBoxLayout()
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.refresh_btn_2 = QPushButton(VenderRegistry)
-        self.refresh_btn_2.setObjectName(u"refresh_btn_2")
-        self.refresh_btn_2.setAutoFillBackground(False)
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ViewRefresh))
-        self.refresh_btn_2.setIcon(icon)
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.refresh_btn = QPushButton(VenderRegistry)
+        self.refresh_btn.setObjectName(u"refresh_btn")
 
-        self.horizontalLayout_3.addWidget(self.refresh_btn_2)
+        self.horizontalLayout.addWidget(self.refresh_btn)
 
-        self.create_btn_2 = QPushButton(VenderRegistry)
-        self.create_btn_2.setObjectName(u"create_btn_2")
-        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListAdd))
-        self.create_btn_2.setIcon(icon1)
+        self.create_btn = QPushButton(VenderRegistry)
+        self.create_btn.setObjectName(u"create_btn")
 
-        self.horizontalLayout_3.addWidget(self.create_btn_2)
+        self.horizontalLayout.addWidget(self.create_btn)
 
-        self.horizontalSpacer_2 = QSpacerItem(50, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer = QSpacerItem(50, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.horizontalLayout_3.addItem(self.horizontalSpacer_2)
+        self.horizontalLayout.addItem(self.horizontalSpacer)
 
-        self.close_btn_2 = QPushButton(VenderRegistry)
-        self.close_btn_2.setObjectName(u"close_btn_2")
-        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ApplicationExit))
-        self.close_btn_2.setIcon(icon2)
+        self.close_btn = QPushButton(VenderRegistry)
+        self.close_btn.setObjectName(u"close_btn")
 
-        self.horizontalLayout_3.addWidget(self.close_btn_2)
+        self.horizontalLayout.addWidget(self.close_btn)
 
 
-        self.verticalLayout.addLayout(self.horizontalLayout_3)
+        self.verticalLayout.addLayout(self.horizontalLayout)
 
         self.tableWidget = QTableWidget(VenderRegistry)
         if (self.tableWidget.columnCount() < 3):
@@ -79,9 +72,9 @@ class Ui_VenderRegistry(object):
 
     def retranslateUi(self, VenderRegistry):
         VenderRegistry.setWindowTitle(QCoreApplication.translate("VenderRegistry", u"Form", None))
-        self.refresh_btn_2.setText("")
-        self.create_btn_2.setText("")
-        self.close_btn_2.setText(QCoreApplication.translate("VenderRegistry", u"\u0417\u0430\u043a\u0440\u044b\u0442\u044c", None))
+        self.refresh_btn.setText(QCoreApplication.translate("VenderRegistry", u"\u041e\u0431\u043d\u043e\u0432\u0438\u0442\u044c", None))
+        self.create_btn.setText(QCoreApplication.translate("VenderRegistry", u"\u0421\u043e\u0437\u0434\u0430\u0442\u044c", None))
+        self.close_btn.setText(QCoreApplication.translate("VenderRegistry", u"\u0417\u0430\u043a\u0440\u044b\u0442\u044c", None))
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("VenderRegistry", u"id", None));
         ___qtablewidgetitem1 = self.tableWidget.horizontalHeaderItem(1)
