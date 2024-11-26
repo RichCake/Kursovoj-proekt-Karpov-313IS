@@ -14,7 +14,7 @@ class UserWidget(QWidget):
         self.ui.delete_btn.hide()
         self.ui.change_password_frame.hide()
 
-        self.ui.save_btn.clicked.connect(self.save_request)
+        self.ui.save_btn.clicked.connect(self.save_user)
         self.ui.close_btn.clicked.connect(parent.close_current_tab)
         self.ui.delete_btn.clicked.connect(self.delete_request)
         self.ui.chenge_password_btn.clicked.connect(self.change_password)
@@ -42,7 +42,7 @@ class UserWidget(QWidget):
             return
         return first_name, second_name, third_name, position, login, password
 
-    def save_request(self):
+    def save_user(self):
         first_name, second_name, third_name, position, login, password = self.check_and_return_editable_fields()
         access_rights = self.ui.access_rights_combobox.currentText()
         purchaser = access_rights == "Закупщик"

@@ -27,7 +27,7 @@ class AcceptDialog(QDialog):
         self.ui.user_table.resizeColumnsToContents()
 
         # Модель для таблицы выбранных пользователей
-        self.accept_model = QStandardItemModel(0, 4, self)  # Пустая модель с четырьмя колонками
+        self.accept_model = QStandardItemModel(0, 4, self)
         self.accept_model.setHorizontalHeaderLabels(["ID", "Имя", "Фамилия", "Отчество"])
         self.ui.accept_table.setModel(self.accept_model)
         self.ui.accept_table.setEditTriggers(QTableView.EditTriggers.NoEditTriggers)
@@ -46,13 +46,14 @@ class AcceptDialog(QDialog):
         self.ui.buttonBox.accepted.connect(self.select_accept_users)
 
     def add_user(self):
-        """Перенос пользователя из user_table в accept_table."""
+        """Перенос пользователя из user_table в accept_table"""
         selected_rows = self.ui.user_table.selectionModel().selectedRows()
 
         if not selected_rows:
             QMessageBox.warning(self, "Ошибка", "Выберите хотя бы одного пользователя.")
             return
 
+        # Перенос выбранных пользователей в таблицу accept_table
         for index in selected_rows:
             row = index.row()
             user_id = self.user_model.data(self.user_model.index(row, 0))
@@ -69,18 +70,19 @@ class AcceptDialog(QDialog):
         self.ui.accept_table.resizeColumnsToContents()
 
     def remove_user(self):
-        """Удаление пользователя из accept_table."""
+        """Удаление пользователя из accept_table"""
         selected_rows = self.ui.accept_table.selectionModel().selectedRows()
 
         if not selected_rows:
             QMessageBox.warning(self, "Ошибка", "Выберите хотя бы одного пользователя для удаления.")
             return
 
-        for index in sorted(selected_rows, reverse=True):  # Удаление с конца списка
+        # Удаление пользователя из accept_table
+        for index in sorted(selected_rows, reverse=True):
             self.accept_model.removeRow(index.row())
 
     def add_to_accept_table(self, user_id, first_name, second_name, third_name):
-        """Добавляет пользователя в accept_table."""
+        """Добавление пользователя в accept_table."""
         id_item = QStandardItem(str(user_id))
         first_name_item = QStandardItem(first_name)
         second_name_item = QStandardItem(second_name)
@@ -89,14 +91,14 @@ class AcceptDialog(QDialog):
         self.accept_model.appendRow([id_item, first_name_item, second_name_item, third_name_item])
 
     def find_in_accept_table(self, user_id):
-        """Проверяет, есть ли пользователь с данным ID в accept_table."""
+        """Проверяет, есть ли пользователь с данным ID в accept_table"""
         for row in range(self.accept_model.rowCount()):
             if self.accept_model.item(row, 0).text() == str(user_id):
                 return True
         return False
 
     def move_up(self):
-        """Перемещает выделенную строку вверх."""
+        """Перемещает выделенную строку вверх"""
         selected_rows = self.ui.accept_table.selectionModel().selectedRows()
 
         if len(selected_rows) != 1:
@@ -105,12 +107,12 @@ class AcceptDialog(QDialog):
 
         row = selected_rows[0].row()
         if row == 0:
-            return  # Нельзя поднять первую строку выше
+            return
 
         self.swap_rows(row, row - 1)
 
     def move_down(self):
-        """Перемещает выделенную строку вниз."""
+        """Перемещает выделенную строку вниз"""
         selected_rows = self.ui.accept_table.selectionModel().selectedRows()
 
         if len(selected_rows) != 1:
@@ -119,12 +121,12 @@ class AcceptDialog(QDialog):
 
         row = selected_rows[0].row()
         if row == self.accept_model.rowCount() - 1:
-            return  # Нельзя опустить последнюю строку ниже
+            return
 
         self.swap_rows(row, row + 1)
 
     def swap_rows(self, row1, row2):
-        """Меняет местами две строки в модели accept_table."""
+        """Меняет местами две строки в модели accept_table"""
         items_row1 = [self.accept_model.item(row1, col).text() for col in range(self.accept_model.columnCount())]
         items_row2 = [self.accept_model.item(row2, col).text() for col in range(self.accept_model.columnCount())]
 
@@ -137,8 +139,8 @@ class AcceptDialog(QDialog):
         self.ui.accept_table.selectRow(row2)
 
     def select_accept_users(self):
+        """Сохраняет выбранных пользователей из accept_table"""
         self.is_step_by_step = True if self.ui.type_combo_box.currentText() == "По очереди" else False
-        """Сохраняет выбранных пользователей из accept_table."""
         selected_user_ids = []
         for row in range(self.accept_model.rowCount()):
             user_id = self.accept_model.item(row, 0).text()

@@ -41,8 +41,8 @@ class VenderWidget(QWidget):
 
         # Настройка таблицы
         self.ui.tableView.setModel(self.model)
-        self.ui.tableView.hideColumn(0)  # Скрываем колонку ID
-        self.ui.tableView.hideColumn(6)  # Скрываем колонку vendor_id
+        self.ui.tableView.hideColumn(0)
+        self.ui.tableView.hideColumn(6)
         self.ui.tableView.resizeColumnsToContents()
 
         # Привязка кнопок
@@ -75,7 +75,6 @@ class VenderWidget(QWidget):
             con.close()
 
     def save_vendor(self):
-        """Сохранение поставщика и менеджеров."""
         name = self.ui.name_edit.text().strip()
         address = self.ui.address_edit.text().strip()
 
@@ -88,19 +87,16 @@ class VenderWidget(QWidget):
             cur = con.cursor()
 
             if self.vender_id is None:
-                # Создание нового поставщика
                 cur.execute("INSERT INTO Vendor (name, address) VALUES (?, ?)", (name, address))
                 self.vender_id = cur.lastrowid
                 QMessageBox.information(self, "Успех", "Поставщик успешно создан.")
             else:
-                # Обновление существующего поставщика
                 cur.execute("UPDATE Vendor SET name = ?, address = ? WHERE id = ?", (name, address, self.vender_id))
                 QMessageBox.information(self, "Успех", "Данные поставщика успешно обновлены.")
 
             con.commit()
             self.model.submitAll()
 
-            # Устанавливаем фильтр для модели после создания поставщика
             self.model.setFilter(f"vender_id = {self.vender_id}")
             self.model.select()
             self.ui.delete_btn.setDisabled(False)

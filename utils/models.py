@@ -4,6 +4,7 @@ from PySide6.QtCore import QDateTime, Qt
 
 from nomenclature.nomenclature_dialog import NomenclatureDialog
 
+
 class DateDelegate(QStyledItemDelegate):
     def displayText(self, value, locale):
         if isinstance(value, str):

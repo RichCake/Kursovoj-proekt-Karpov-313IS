@@ -11,15 +11,18 @@ from utils.models import DateDelegate
 
 class AcceptInvoiceRegistry(QWidget):
     def __init__(self, parent):
+        # Инициализация виджета для обработки заявок на согласование
         super().__init__()
         self.parent = parent
         self.ui = Ui_Accept_requests_registry()
         self.ui.setupUi(self)
 
+        # Настройка модели таблицы для отображения заявок
         self.model = QSqlRelationalTableModel()
         self.model.setTable("Invoice")
         self.model.setRelation(5, QSqlRelation("Users", "id", "login"))
 
+        # Загрузка списка заявок, доступных для согласования
         try:
             con = sqlite3.connect(self.parent.database_file)
             cur = con.cursor()
@@ -38,14 +41,17 @@ class AcceptInvoiceRegistry(QWidget):
             """
             invoice_ids = cur.execute(query, (self.parent.user_id,)).fetchall()
         except sqlite3.DatabaseError as e:
+            # Обработка ошибок при работе с базой данных
             QMessageBox.critical(self, "Ошибка базы данных", f"Не удалось загрузить данные: {e}")
             invoice_ids = []
         finally:
             con.close()
 
+        # Установка фильтра для отображения заявок текущего пользователя
         self.model.setFilter(f"Invoice.id IN ({', '.join(map(lambda x: str(x[0]), invoice_ids))})")
         self.model.select()
 
+        # Настройка отображения таблицы заявок
         self.ui.request_list.setModel(self.model)
         self.ui.request_list.setEditTriggers(QTableView.EditTriggers.NoEditTriggers)
         self.ui.request_list.setSelectionBehavior(QTableView.SelectionBehavior.SelectRows)
@@ -64,6 +70,7 @@ class AcceptInvoiceRegistry(QWidget):
         self.ui.request_list.setItemDelegateForColumn(3, date_delegate)
         self.ui.request_list.resizeColumnsToContents()
 
+        # Привязка событий к элементам интерфейса
         self.ui.request_list.doubleClicked.connect(self.load_invoice)
         self.ui.accept_btn.clicked.connect(self.accept_invoice)
         self.ui.reject_btn.clicked.connect(self.reject_invoice)
@@ -71,10 +78,12 @@ class AcceptInvoiceRegistry(QWidget):
         self.ui.close_btn.clicked.connect(parent.close_current_tab)
 
     def refresh_list(self):
+        """Обновление списка заявок"""
         self.model.select()
         self.ui.request_list.reset()
 
     def load_invoice(self):
+        """Загрузка данных о выбранной заявке"""
         selected_rows = self.ui.request_list.selectionModel().selectedRows()
         if len(selected_rows) != 1:
             QMessageBox.warning(self, "Ошибка выбора", "Выберите только одну заявку.")
@@ -84,10 +93,10 @@ class AcceptInvoiceRegistry(QWidget):
             QMessageBox.warning(self, "Ошибка", "Идентификатор заявки не найден.")
             return
         self.parent.open_invoice_creation_with_data(invoice_id)
-
         self.parent.status_bar.showMessage("Заявка успешно выбрана", 3000)
 
     def check_to_change_invoice_status(self):
+        """Проверка и изменение статуса заявки на основе этапов согласования"""
         con = sqlite3.connect(self.parent.database_file)
         cur = con.cursor()
         invoice_ids = cur.execute("SELECT DISTINCT invoice_id FROM Invoice_approvals_stages").fetchall()
@@ -111,6 +120,7 @@ class AcceptInvoiceRegistry(QWidget):
         con.close()
 
     def accept_invoice(self):
+        """Согласование выбранной заявки"""
         selected_rows = self.ui.request_list.selectionModel().selectedRows()
         if len(selected_rows) != 1:
             QMessageBox.warning(self, "Ошибка выбора", "Выберите только одну заявку.")
@@ -129,10 +139,10 @@ class AcceptInvoiceRegistry(QWidget):
         con.close()
         self.refresh_list()
         self.check_to_change_invoice_status()
-
         self.parent.status_bar.showMessage("Заявка согласована", 3000)
 
     def reject_invoice(self):
+        """Отклонение выбранной заявки"""
         selected_rows = self.ui.request_list.selectionModel().selectedRows()
         if len(selected_rows) != 1:
             QMessageBox.warning(self, "Ошибка выбора", "Выберите только одну заявку.")
@@ -151,5 +161,4 @@ class AcceptInvoiceRegistry(QWidget):
         con.close()
         self.refresh_list()
         self.check_to_change_invoice_status()
-
         self.parent.status_bar.showMessage("Заявка отклонена", 3000)

@@ -62,7 +62,8 @@ class RequestWidget(QWidget):
             if dialog.nomenclature_id:
                 con = sqlite3.connect(self.parent.database_file)
                 cur = con.cursor()
-                nomenclature = cur.execute("SELECT * FROM Nomenclature WHERE id=?", (dialog.nomenclature_id,)).fetchone()
+                nomenclature = cur.execute("SELECT * FROM Nomenclature WHERE id=?",
+                                           (dialog.nomenclature_id,)).fetchone()
                 con.close()
 
                 rows = self.ui.tableWidget.rowCount()
@@ -111,24 +112,25 @@ class RequestWidget(QWidget):
         if not (description and rows and all(amounts)):
             return
         category_name = self.ui.category_combobox.currentText()
-        
+
         created_at = dt.datetime.now()
         status = "Не согласовано"
         user_id = self.parent.user_id
 
         con = sqlite3.connect(self.parent.database_file)
         cur = con.cursor()
-        category_id = cur.execute("SELECT id FROM Request_category WHERE name=?", (category_name, )).fetchone()[0]
+        category_id = cur.execute("SELECT id FROM Request_category WHERE name=?", (category_name,)).fetchone()[0]
         try:
-            cur.execute("INSERT INTO Requests(description, created_at, status, category_id, initiator_id) VALUES (?, ?, ?, ?, ?);", 
-                        (description, created_at, status, category_id, user_id))
+            cur.execute(
+                "INSERT INTO Requests(description, created_at, status, category_id, initiator_id) VALUES (?, ?, ?, ?, ?);",
+                (description, created_at, status, category_id, user_id))
         except sqlite3.Error as err:
             QMessageBox.critical(self, "Неизвестная ошибка", str(err))
-        
+
         request_id = cur.lastrowid
         request_ids = [str(request_id)] * rows
 
-        cur.executemany("INSERT INTO Request_items(amount, request_id, item_id) VALUES (?, ?, ?);", 
+        cur.executemany("INSERT INTO Request_items(amount, request_id, item_id) VALUES (?, ?, ?);",
                         zip(amounts, request_ids, item_ids))
         con.commit()
         con.close()
@@ -143,29 +145,29 @@ class RequestWidget(QWidget):
         if not (description and rows and amounts):
             return
         category_name = self.ui.category_combobox.currentText()
-        
+
         con = sqlite3.connect(self.parent.database_file)
         cur = con.cursor()
-        category_id = cur.execute("SELECT id FROM Request_category WHERE name=?", (category_name, )).fetchone()[0]
+        category_id = cur.execute("SELECT id FROM Request_category WHERE name=?", (category_name,)).fetchone()[0]
         try:
-            cur.execute("UPDATE Requests SET description=?, category_id=? WHERE id=?;", (description, category_id, self.id))
+            cur.execute("UPDATE Requests SET description=?, category_id=? WHERE id=?;",
+                        (description, category_id, self.id))
         except sqlite3.OperationalError as err:
             QMessageBox.critical(self, "Неизвестная ошибка", str(err))
-        
+
         request_ids = [str(self.id)] * rows
 
         cur.execute("DELETE FROM Request_items WHERE request_id=?", (self.id,))
-        cur.executemany("INSERT INTO Request_items(amount, request_id, item_id) VALUES (?, ?, ?);", 
+        cur.executemany("INSERT INTO Request_items(amount, request_id, item_id) VALUES (?, ?, ?);",
                         zip(amounts, request_ids, item_ids))
         con.commit()
         con.close()
         self.parent.status_bar.showMessage("Заявка успешно сохранена", 3000)
 
-
     def load_request_data(self, request_id):
         con = sqlite3.connect(self.parent.database_file)
         cur = con.cursor()
-        
+
         # Получаем основную информацию о заявке
         request = cur.execute("""
                               SELECT 
@@ -193,12 +195,13 @@ class RequestWidget(QWidget):
                 self.ui.tableWidget.setItem(row, 1, QTableWidgetItem(nomenclature[0]))
                 self.ui.tableWidget.setItem(row, 2, QTableWidgetItem(nomenclature[1]))
                 self.ui.tableWidget.setItem(row, 3, QTableWidgetItem(str(amount)))
-        
+
         con.close()
         self.set_is_created(request_id)
 
     def delete_request(self):
-        res = QMessageBox.warning(self, "Предупреждение", "Вы уверены, что хотите удалить объект?", QMessageBox.Yes, QMessageBox.No)
+        res = QMessageBox.warning(self, "Предупреждение", "Вы уверены, что хотите удалить объект?", QMessageBox.Yes,
+                                  QMessageBox.No)
         if res == QMessageBox.No:
             return
 
@@ -225,7 +228,8 @@ class RequestWidget(QWidget):
             con = sqlite3.connect(self.parent.database_file)
             cur = con.cursor()
 
-            max_stage = cur.execute("SELECT MAX(stage_order) FROM Request_approvals_stages WHERE request_id=?;", (self.id,)).fetchone()[0]
+            max_stage = cur.execute("SELECT MAX(stage_order) FROM Request_approvals_stages WHERE request_id=?;",
+                                    (self.id,)).fetchone()[0]
             if not max_stage:
                 max_stage = 0
             else:
@@ -235,7 +239,9 @@ class RequestWidget(QWidget):
                 cur.execute("""
                             INSERT INTO Request_approvals_stages(approval_status, stage_order, request_id, acceptor_id) 
                             VALUES (?, ?, ?, ?)
-                            """, (approval_status, max_stage + stage_order if dialog.is_step_by_step else max_stage, self.id, acceptor_id))
+                            """, (
+                approval_status, max_stage + stage_order if dialog.is_step_by_step else max_stage, self.id,
+                acceptor_id))
 
             con.commit()
             con.close()

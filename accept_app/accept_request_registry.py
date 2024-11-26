@@ -51,10 +51,6 @@ class AcceptRequestRegistry(QWidget):
         self.ui.request_list.setItemDelegateForColumn(2, date_delegate)
         self.ui.request_list.resizeColumnsToContents()
 
-        # self.request_widget = RequestWidget(self.parent)
-        # self.request_widget.setDisabled(True)
-        # self.ui.horizontalLayout_2.addWidget(self.request_widget)
-
         self.ui.request_list.doubleClicked.connect(self.load_request)
         self.ui.accept_btn.clicked.connect(self.accept_request)
         self.ui.reject_btn.clicked.connect(self.reject_request)
@@ -70,7 +66,6 @@ class AcceptRequestRegistry(QWidget):
         if len(selected_rows) > 1:
             return
         request_id = self.model.data(selected_rows[0])
-        # self.request_widget.load_request_data(request_id)
         self.parent.open_request_creation_with_data(request_id)
 
         self.parent.status_bar.showMessage("Заявка успешно выбрана", 3000)

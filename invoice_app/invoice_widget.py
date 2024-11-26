@@ -137,7 +137,6 @@ class InvoiceWidget(QWidget):
 
         return None, None, None, None, None, None, None
 
-
     def save_invoice(self):
         name, description, rows, amounts, item_ids, prices = self.check_and_return_editable_fields()
         if not (name and description and rows and amounts and prices):
@@ -315,8 +314,8 @@ class InvoiceWidget(QWidget):
         total_sum = 0
         rows = self.ui.tableWidget.rowCount()
         for row in range(rows):
-            price_item = self.ui.tableWidget.item(row, 4)  # Колонка цены
-            amount_item = self.ui.tableWidget.item(row, 3)  # Колонка количества
+            price_item = self.ui.tableWidget.item(row, 4)
+            amount_item = self.ui.tableWidget.item(row, 3)
             if price_item and amount_item:
                 try:
                     price = float(price_item.text())

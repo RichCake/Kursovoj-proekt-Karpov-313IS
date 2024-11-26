@@ -3,7 +3,7 @@ from PySide6.QtWidgets import QVBoxLayout, QWidget, QTableWidget, QTableWidgetIt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 
-# Main Window
+
 class ReportWidget(QWidget):
     def __init__(self, parent):
         self.parent = parent
@@ -20,7 +20,7 @@ class ReportWidget(QWidget):
         }
         for name, report_class in self.buttons.items():
             btn = QPushButton(name)
-            btn.clicked.connect(lambda checked, cls=report_class, parent=parent: self.show_report(cls, parent))
+            btn.clicked.connect(lambda checked, cls=report_class, _parent=self.parent: self.show_report(cls, _parent))
             self.layout.addWidget(btn)
 
         self.current_widget = None

@@ -1,6 +1,5 @@
 import sqlite3
 
-import PySide6.QtSql
 from PySide6.QtCore import QDate, QUrl
 from PySide6.QtGui import QDesktopServices
 from PySide6.QtWidgets import QDialog, QFileDialog, QMessageBox, QWidget
@@ -52,7 +51,6 @@ class ContractWidget(QWidget):
                 self.ui.filename_lbl.setText(file_path if file_path else "")
 
     def save_contract(self):
-        """Сохраняет новый контракт в базе данных."""
         number = self.ui.number_edit.text()
         date = self.ui.date_edit.date().toString("yyyy-MM-dd")
         vendor_name = self.ui.vendor_lbl.text()
@@ -78,14 +76,12 @@ class ContractWidget(QWidget):
             vendor_id = vendor[0]
 
             if self.contract_id:
-                # Обновление контракта
                 cursor.execute("""
                     UPDATE Contracts
                     SET number = ?, date = ?, vender_id = ?, file_path = ?
                     WHERE id = ?
                 """, (number, date, vendor_id, file_path, self.contract_id))
             else:
-                # Сохранение нового контракта
                 cursor.execute("""
                     INSERT INTO Contracts (number, date, vender_id, file_path)
                     VALUES (?, ?, ?, ?)

@@ -2,10 +2,6 @@ import sqlite3
 
 from PySide6.QtWidgets import QDialog, QTableWidgetItem, QTableView, QMessageBox
 
-# Important:
-# You need to run the following command to generate the ui_form.py file
-#     pyside6-uic menu.ui -o ui_form.py, or
-#     pyside2-uic menu.ui -o ui_form.py
 from interfaces.ui_nomenclature_dialog import Ui_Nomenclature_dialog
 
 
