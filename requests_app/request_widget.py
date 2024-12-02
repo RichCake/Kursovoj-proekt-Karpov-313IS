@@ -102,7 +102,7 @@ class RequestWidget(QWidget):
         elif not all(amounts):
             QMessageBox.warning(self, "Предупреждение", "Вы не указали `Количество` у некоторых позиций")
         else:
-            amounts = map(lambda item: item.text(), amounts)
+            amounts = list(map(lambda item: item.text(), amounts))
             item_ids = [self.ui.tableWidget.item(row, 0).text() for row in range(rows)]
 
         return description, rows, amounts, item_ids
@@ -251,9 +251,10 @@ class RequestWidget(QWidget):
             self.parent.status_bar.showMessage("Заявка успешно отправлена на согласование", 3000)
 
     def mark_done(self):
-        ans = QMessageBox(self, "Предупреждение", "Для продолжения необходимо сохранить объект")
-        if ans == QMessageBox.Ok:
-            self.save_request()
+        ans = QMessageBox(self, "Предупреждение", 'Вы уверены, что хотите установить статус заявки "Выполнено?"')
+        if ans != QMessageBox.Ok:
+            return
+        self.save_request()
         con = sqlite3.connect(self.parent.database_file)
         cur = con.cursor()
         cur.execute("UPDATE Requests SET status=? WHERE id=?;", ("Выполнено", self.id))

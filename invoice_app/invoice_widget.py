@@ -269,7 +269,7 @@ class InvoiceWidget(QWidget):
 
     def open_accept_dialog(self):
         if not self.id:
-            ans = QMessageBox.warning(self, "Предупреждение", "Для продолжения необходимо сохранить объект")
+            ans = QMessageBox.warning(self, "Предупреждение", "Для продолжения необходимо сохранить объект", QMessageBox.Cancel | QMessageBox.Ok)
             if ans == QMessageBox.Ok:
                 self.save_invoice()
             else:

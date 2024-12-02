@@ -41,7 +41,8 @@ class ContractDialog(QDialog):
         self.ui.tableWidget.resizeColumnsToContents()
 
     def select_contract(self):
-        if len(self.ui.tableWidget.selectedItems()) != 1:
+        print(len(self.ui.tableWidget.selectedItems()))
+        if len(self.ui.tableWidget.selectedItems()) != 2:
             QMessageBox.warning(self, "Предупреждение", "Выберете один договор")
             return
         self.contract_id = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 0).text()
