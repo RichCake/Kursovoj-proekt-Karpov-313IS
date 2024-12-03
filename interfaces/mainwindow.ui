@@ -99,42 +99,6 @@
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="groupBox">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="title">
-           <string>Счета</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_4">
-           <item>
-            <widget class="QPushButton" name="invoice_registry_btn">
-             <property name="text">
-              <string>Реестр счетов</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="create_invoice_btn">
-             <property name="text">
-              <string>Создать счет</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="accept_invoice_btn">
-             <property name="text">
-              <string>Согласовать счета</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
          <widget class="QGroupBox" name="groupBox_3">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -150,20 +114,6 @@
             <widget class="QPushButton" name="user_registry_btn">
              <property name="text">
               <string>Пользователи</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="contract_registry_btn">
-             <property name="text">
-              <string>Договоры</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="vendor_btn">
-             <property name="text">
-              <string>Контрагенты</string>
              </property>
             </widget>
            </item>

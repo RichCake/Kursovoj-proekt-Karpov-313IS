@@ -21,7 +21,7 @@ class AcceptRequestWidget(QWidget):
         self.model = QSqlRelationalTableModel(self)
         self.model.setTable("Request_approvals_stages")
         self.ui.tableView.setEditTriggers(QTableView.EditTriggers.NoEditTriggers)
-        self.model.setRelation(7, QSqlRelation("Users", "id", "first_name || ' ' || second_name || ' ' || third_name"))
+        self.model.setRelation(6, QSqlRelation("Users", "id", "first_name || ' ' || second_name || ' ' || third_name AS ФИО"))
 
         # Задаем заголовки таблицы
         self.model.setHeaderData(1, Qt.Horizontal, "Статус")
@@ -38,7 +38,6 @@ class AcceptRequestWidget(QWidget):
         self.ui.tableView.setModel(self.model)
         self.ui.tableView.hideColumn(0)  # Скрываем ID записи
         self.ui.tableView.hideColumn(5)  # Скрываем ID заявки
-        self.ui.tableView.hideColumn(6)  # Скрываем template_stage_id
         self.ui.tableView.resizeColumnsToContents()
 
         # Устанавливаем запрет редактирования поля "Статус"
