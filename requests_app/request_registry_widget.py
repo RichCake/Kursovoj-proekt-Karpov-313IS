@@ -1,7 +1,7 @@
 import sqlite3
 
-from PySide6.QtWidgets import QWidget, QTableView
-from PySide6.QtSql import QSqlRelationalTableModel, QSqlRelation
+from PySide6.QtSql import QSqlRelation, QSqlRelationalTableModel
+from PySide6.QtWidgets import QTableView, QWidget
 
 from interfaces.ui_request_registry import Ui_Request_registry
 from utils.models import DateDelegate

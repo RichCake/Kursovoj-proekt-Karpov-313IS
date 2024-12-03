@@ -1,12 +1,12 @@
-import sqlite3
 import datetime as dt
+import sqlite3
 
-from PySide6.QtWidgets import QWidget, QDialog, QTableWidgetItem, QMessageBox
+from PySide6.QtWidgets import QDialog, QMessageBox, QTableWidgetItem, QWidget
 
+from accept_app.accept_dialog import AcceptDialog
 from interfaces.ui_create_request import Ui_Request
 from nomenclature.nomenclature_dialog import NomenclatureDialog
 from requests_app.request_category_dialog import RequestCategoryDialog
-from accept_app.accept_dialog import AcceptDialog
 
 
 class RequestWidget(QWidget):

@@ -1,6 +1,6 @@
 import sqlite3
 
-from PySide6.QtWidgets import QDialog, QTableWidgetItem, QTableView, QMessageBox
+from PySide6.QtWidgets import QDialog, QMessageBox, QTableView, QTableWidgetItem
 
 from interfaces.ui_nomenclature_dialog import Ui_Nomenclature_dialog
 

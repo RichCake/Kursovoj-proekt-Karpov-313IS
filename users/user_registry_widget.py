@@ -1,5 +1,5 @@
-from PySide6.QtWidgets import QWidget, QTableView
 from PySide6.QtSql import QSqlRelationalTableModel
+from PySide6.QtWidgets import QTableView, QWidget
 
 from interfaces.ui_user_registry_widget import Ui_User_registry
 

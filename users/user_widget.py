@@ -1,6 +1,6 @@
 import sqlite3
 
-from PySide6.QtWidgets import QWidget, QMessageBox
+from PySide6.QtWidgets import QMessageBox, QWidget
 
 from interfaces.ui_user_widget import Ui_User_widget
 

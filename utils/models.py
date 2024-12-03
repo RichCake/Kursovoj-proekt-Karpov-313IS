@@ -1,6 +1,15 @@
 import sqlite3
-from PySide6.QtWidgets import QStyledItemDelegate, QPushButton, QHBoxLayout, QLineEdit, QWidget, QDialog, QTableWidgetItem
+
 from PySide6.QtCore import QDateTime, Qt
+from PySide6.QtWidgets import (
+    QDialog,
+    QHBoxLayout,
+    QLineEdit,
+    QPushButton,
+    QStyledItemDelegate,
+    QTableWidgetItem,
+    QWidget,
+)
 
 from nomenclature.nomenclature_dialog import NomenclatureDialog
 

@@ -1,28 +1,56 @@
+import datetime as dt
 import os
 import sqlite3
 import sys
 from pathlib import Path
 
-from PySide6.QtCore import QFile, QTextStream
-from PySide6.QtSql import QSqlDatabase
+import pandas as pd
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.figure import Figure
+from PySide6.QtCore import QDateTime, QFile, Qt, QTextStream
+from PySide6.QtGui import QStandardItem, QStandardItemModel
+from PySide6.QtSql import QSqlDatabase, QSqlRelation, QSqlRelationalTableModel
 from PySide6.QtWidgets import (
     QApplication,
     QDialog,
+    QFileDialog,
+    QHBoxLayout,
+    QLineEdit,
+    QListWidgetItem,
     QMainWindow,
     QMessageBox,
+    QPushButton,
+    QStyledItemDelegate,
+    QTableView,
+    QTableWidgetItem,
     QTabWidget,
+    QVBoxLayout,
+    QWidget,
 )
 
-from create_db import create_db
+from accept_app.accept_dialog import AcceptDialog
 from accept_app.accept_request_registry import AcceptRequestRegistry
 from accept_app.accept_request_viewer import AcceptRequestWidget
+from create_db import create_db
+from interfaces.ui_accept_dialog import Ui_Accept_dialog
+from interfaces.ui_accept_requests_registry import Ui_Accept_requests_registry
+from interfaces.ui_accept_viewer import Ui_AcceptViewer
 from interfaces.ui_auth_dialog import Ui_Auth_dialog
+from interfaces.ui_create_request import Ui_Request
 from interfaces.ui_mainwindow import Ui_MainWindow
-from reports.reports_widget import ReportWidget, Report1, Report2, Report3, Report4
+from interfaces.ui_nomenclature_dialog import Ui_Nomenclature_dialog
+from interfaces.ui_request_category_dialog import Ui_Request_category
+from interfaces.ui_request_registry import Ui_Request_registry
+from interfaces.ui_user_registry_widget import Ui_User_registry
+from interfaces.ui_user_widget import Ui_User_widget
+from nomenclature.nomenclature_dialog import NomenclatureDialog
+from reports.reports_widget import Report1, Report2, Report3, Report4, ReportWidget
+from requests_app.request_category_dialog import RequestCategoryDialog
 from requests_app.request_registry_widget import RequestRegistryWidget
 from requests_app.request_widget import RequestWidget
 from users.user_registry_widget import UserRegistryWidget
 from users.user_widget import UserWidget
+from utils.models import DateDelegate, ReadOnlyDelegate
 
 BASE_DIR = Path(__file__).resolve().parent
 

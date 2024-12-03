@@ -2,7 +2,7 @@ import sqlite3
 
 from PySide6.QtCore import Qt
 from PySide6.QtSql import QSqlRelation, QSqlRelationalTableModel
-from PySide6.QtWidgets import QMessageBox, QTableView, QWidget, QDialog
+from PySide6.QtWidgets import QDialog, QMessageBox, QTableView, QWidget
 
 from accept_app.accept_dialog import AcceptDialog
 from interfaces.ui_accept_viewer import Ui_AcceptViewer
