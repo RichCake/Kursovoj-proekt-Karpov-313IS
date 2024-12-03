@@ -14,23 +14,15 @@ from PySide6.QtWidgets import (
 )
 
 from create_db import create_db
-from accept_app.accept_invoice_registry import AcceptInvoiceRegistry
-from accept_app.accept_invoice_viewer import AcceptInvoiceWidget
 from accept_app.accept_request_registry import AcceptRequestRegistry
 from accept_app.accept_request_viewer import AcceptRequestWidget
-from contracts_app.contract_widget import ContractWidget
-from contracts_app.contracts_registry import ContractRegistry
 from interfaces.ui_auth_dialog import Ui_Auth_dialog
 from interfaces.ui_mainwindow import Ui_MainWindow
-from invoice_app.invoice_registry_widget import InvoiceRegistryWidget
-from invoice_app.invoice_widget import InvoiceWidget
 from reports.reports_widget import ReportWidget
 from requests_app.request_registry_widget import RequestRegistryWidget
 from requests_app.request_widget import RequestWidget
 from users.user_registry_widget import UserRegistryWidget
 from users.user_widget import UserWidget
-from vender_app.vender_registry import VenderRegistry
-from vender_app.vender_widget import VenderWidget
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -107,12 +99,7 @@ class MainWindow(QMainWindow):
         self.ui.request_registry_btn.clicked.connect(self.open_request_registry)
         self.ui.user_registry_btn.clicked.connect(self.open_user_registry)
         self.ui.accept_request_btn.clicked.connect(self.open_accept_request_registry)
-        self.ui.create_invoice_btn.clicked.connect(self.open_invoice_creation)
-        self.ui.invoice_registry_btn.clicked.connect(self.open_invoice_registry)
-        self.ui.accept_invoice_btn.clicked.connect(self.open_accept_invoice_registry)
         self.ui.reports_btn.clicked.connect(self.open_reports_widget)
-        self.ui.contract_registry_btn.clicked.connect(self.open_contract_registry)
-        self.ui.vendor_btn.clicked.connect(self.open_vender_registry)
         self.ui.exit_btn.clicked.connect(self.exit_app)
 
     def exit_app(self):
@@ -160,70 +147,14 @@ class MainWindow(QMainWindow):
         self.tab_widget.addTab(accept_request_registry_widget, "Согласовать заявки")
         self.tab_widget.setCurrentWidget(accept_request_registry_widget)
 
-    def open_invoice_registry(self):
-        w = InvoiceRegistryWidget(self)
-        self.tab_widget.addTab(w, "Реестр счетов")
-        self.tab_widget.setCurrentWidget(w)
-
-    def open_invoice_creation(self):
-        w = InvoiceWidget(self)
-        self.tab_widget.addTab(w, "Создание счета")
-        self.tab_widget.setCurrentWidget(w)
-    
-    def open_invoice_creation_with_data(self, invoice_id):
-        w = InvoiceWidget(self)
-        w.load_invoice_data(invoice_id)
-        self.tab_widget.addTab(w, f"Счет {invoice_id}")
-        self.tab_widget.setCurrentWidget(w)
-
-    def open_accept_invoice_registry(self):
-        w = AcceptInvoiceRegistry(self)
-        self.tab_widget.addTab(w, "Согласовать счета")
-        self.tab_widget.setCurrentWidget(w)
-
     def open_reports_widget(self):
         w = ReportWidget(self)
         self.tab_widget.addTab(w, "Отчеты")
         self.tab_widget.setCurrentWidget(w)
 
-    def open_contract_registry(self):
-        w = ContractRegistry(self)
-        self.tab_widget.addTab(w, "Реестр договоров")
-        self.tab_widget.setCurrentWidget(w)
-
-    def open_contract_creation(self):
-        w = ContractWidget(self)
-        self.tab_widget.addTab(w, "Создание договора")
-        self.tab_widget.setCurrentWidget(w)
-
-    def open_contract_with_data(self, contract_id):
-        w = ContractWidget(self, contract_id)
-        self.tab_widget.addTab(w, f"Договор {contract_id}")
-        self.tab_widget.setCurrentWidget(w)
-
-    def open_vender_registry(self):
-        w = VenderRegistry(self)
-        self.tab_widget.addTab(w, "Реестр контрагентов")
-        self.tab_widget.setCurrentWidget(w)
-
-    def open_vender_creation(self):
-        w = VenderWidget(self)
-        self.tab_widget.addTab(w, "Создание контрагента")
-        self.tab_widget.setCurrentWidget(w)
-
-    def open_vender_with_data(self, vender_id):
-        w = VenderWidget(self, vender_id)
-        self.tab_widget.addTab(w, f"Контрагент {vender_id}")
-        self.tab_widget.setCurrentWidget(w)
-
     def open_accept_request_viewer(self, request_id):
         w = AcceptRequestWidget(self, request_id)
         self.tab_widget.addTab(w, f"Согласование Заявки {request_id}")
-        self.tab_widget.setCurrentWidget(w)
-
-    def open_accept_invoice_viewer(self, invoice_id):
-        w = AcceptInvoiceWidget(self, invoice_id)
-        self.tab_widget.addTab(w, f"Согласование Счета {invoice_id}")
         self.tab_widget.setCurrentWidget(w)
 
 
@@ -235,5 +166,5 @@ if __name__ == '__main__':
     app.setStyleSheet(qss.readAll())
 
     ex = MainWindow()
-    ex.showFullScreen()
+    ex.show()
     sys.exit(app.exec())
