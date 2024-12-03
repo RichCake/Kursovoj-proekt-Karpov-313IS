@@ -1,42 +1,47 @@
 import sqlite3
-from PySide6.QtWidgets import QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem, QPushButton
+
+import pandas as pd
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
+from PySide6.QtWidgets import (
+    QFileDialog,
+    QHBoxLayout,
+    QPushButton,
+    QTabWidget,
+    QVBoxLayout,
+    QWidget,
+)
 
 
 class ReportWidget(QWidget):
     def __init__(self, parent):
-        self.parent = parent
         super().__init__()
+        self.parent = parent
         self.setWindowTitle("Отчеты")
+        layout = QVBoxLayout(self)
 
-        # Buttons to switch between reports
-        self.layout = QVBoxLayout(self)
-        self.buttons = {
-            "Объем заявок по месяцам": Report1,
-            "Топ-10 поставщиков": Report2,
-            "Статистика по категориям": Report3,
-            "Рейтинг сотрудников": Report6,
-        }
-        for name, report_class in self.buttons.items():
-            btn = QPushButton(name)
-            btn.clicked.connect(lambda checked, cls=report_class, _parent=self.parent: self.show_report(cls, _parent))
-            self.layout.addWidget(btn)
+        btn1 = QPushButton("Отчет 1: Объем заявок по месяцам")
+        btn1.clicked.connect(self.parent.open_report1_widget)
+        layout.addWidget(btn1)
 
-        self.current_widget = None
+        btn2 = QPushButton("Отчет 2: Статистика по категориям")
+        btn2.clicked.connect(self.parent.open_report2_widget)
+        layout.addWidget(btn2)
 
-    def show_report(self, report_class, parent):
-        if self.current_widget:
-            self.current_widget.deleteLater()
-        self.current_widget = report_class(parent)
-        self.layout.addWidget(self.current_widget)
+        btn3 = QPushButton("Отчет 3: Сколько заказано каждой номенклатуры")
+        btn3.clicked.connect(self.parent.open_report3_widget)
+        layout.addWidget(btn3)
+
+        btn4 = QPushButton("Отчет 4: Отчет по стадиям согласования")
+        btn4.clicked.connect(self.parent.open_report4_widget)
+        layout.addWidget(btn4)
 
 
-# Report 1: Объем заявок по месяцам
 class Report1(QWidget):
     def __init__(self, parent):
         super().__init__()
         layout = QVBoxLayout(self)
+        self.parent = parent
         conn = sqlite3.connect(parent.database_file)
         cursor = conn.cursor()
         cursor.execute("SELECT strftime('%Y-%m', created_at) AS month, COUNT(*) FROM Requests GROUP BY month")
@@ -54,40 +59,22 @@ class Report1(QWidget):
         canvas = FigureCanvas(fig)
         layout.addWidget(canvas)
 
+        export_btn = QPushButton("Выгрузить в Excel")
+        export_btn.clicked.connect(lambda: self.export_to_excel(data, ["Месяц", "Количество"]))
+        layout.addWidget(export_btn)
 
-# Report 2: Топ-10 поставщиков
+    def export_to_excel(self, data, columns):
+        file_path, _ = QFileDialog.getSaveFileName(self, "Сохранить отчет", "", "Excel Files (*.xlsx)")
+        if file_path:
+            df = pd.DataFrame(data, columns=columns)
+            df.to_excel(file_path, index=False)
+
+
 class Report2(QWidget):
     def __init__(self, parent):
         super().__init__()
         layout = QVBoxLayout(self)
-        conn = sqlite3.connect(parent.database_file)
-        cursor = conn.cursor()
-        cursor.execute("""
-                        SELECT Vendor.name, COUNT(*) 
-                        FROM Invoice
-                        LEFT JOIN Contracts ON Invoice.contract_id = Contracts.id
-                        LEFT JOIN Vendor ON Contracts.vender_id = Vendor.id
-                        GROUP BY Vendor.id
-                        ORDER BY COUNT(*) DESC
-                        LIMIT 10
-                       """)
-        data = cursor.fetchall()
-        conn.close()
-
-        table = QTableWidget(len(data), 2)
-        table.setHorizontalHeaderLabels(["Поставщик", "Количество счетов"])
-        for row, (supplier, count) in enumerate(data):
-            table.setItem(row, 0, QTableWidgetItem(supplier))
-            table.setItem(row, 1, QTableWidgetItem(str(count)))
-        table.resizeColumnsToContents()
-        layout.addWidget(table)
-
-
-# Report 3: Статистика по категориям
-class Report3(QWidget):
-    def __init__(self, parent):
-        super().__init__()
-        layout = QVBoxLayout(self)
+        self.parent = parent
         conn = sqlite3.connect(parent.database_file)
         cursor = conn.cursor()
         cursor.execute("""
@@ -107,27 +94,81 @@ class Report3(QWidget):
         canvas = FigureCanvas(fig)
         layout.addWidget(canvas)
 
+        export_btn = QPushButton("Выгрузить в Excel")
+        export_btn.clicked.connect(lambda: self.export_to_excel(data, ["Категория", "Количество"]))
+        layout.addWidget(export_btn)
 
-# Report 6: Рейтинг сотрудников
-class Report6(QWidget):
+    def export_to_excel(self, data, columns):
+        file_path, _ = QFileDialog.getSaveFileName(self, "Сохранить отчет", "", "Excel Files (*.xlsx)")
+        if file_path:
+            df = pd.DataFrame(data, columns=columns)
+            df.to_excel(file_path, index=False)
+
+
+class Report3(QWidget):
     def __init__(self, parent):
         super().__init__()
         layout = QVBoxLayout(self)
+        self.parent = parent
         conn = sqlite3.connect(parent.database_file)
         cursor = conn.cursor()
         cursor.execute("""
-                       SELECT Users.login, COUNT(*) 
-                       FROM Requests 
-                       LEFT JOIN Users ON Requests.initiator_id = Users.id
-                       GROUP BY Users.id 
-                       ORDER BY COUNT(*) DESC
-                       """)
+                       SELECT Nomenclature.name, SUM(Request_items.amount)
+                       FROM Request_items
+                       JOIN Nomenclature ON Request_items.item_id = Nomenclature.id
+                       GROUP BY Request_items.item_id""")
         data = cursor.fetchall()
         conn.close()
 
-        table = QTableWidget(len(data), 2)
-        table.setHorizontalHeaderLabels(["Сотрудник", "Количество заявок"])
-        for row, (employee, count) in enumerate(data):
-            table.setItem(row, 0, QTableWidgetItem(employee))
-            table.setItem(row, 1, QTableWidgetItem(str(count)))
-        layout.addWidget(table)
+        names, counts = zip(*data) if data else ([], [])
+        fig = Figure(figsize=(5, 3))
+        ax = fig.add_subplot(111)
+        ax.pie(counts, labels=names, autopct="%1.1f%%")
+        ax.set_title("Количество заказанных номенклатур")
+
+        canvas = FigureCanvas(fig)
+        layout.addWidget(canvas)
+
+        export_btn = QPushButton("Выгрузить в Excel")
+        export_btn.clicked.connect(lambda: self.export_to_excel(data, ["Номенклатура", "Количество"]))
+        layout.addWidget(export_btn)
+
+    def export_to_excel(self, data, columns):
+        file_path, _ = QFileDialog.getSaveFileName(self, "Сохранить отчет", "", "Excel Files (*.xlsx)")
+        if file_path:
+            df = pd.DataFrame(data, columns=columns)
+            df.to_excel(file_path, index=False)
+
+
+class Report4(QWidget):
+    def __init__(self, parent):
+        super().__init__()
+        layout = QVBoxLayout(self)
+        self.parent = parent
+        conn = sqlite3.connect(parent.database_file)
+        cursor = conn.cursor()
+        cursor.execute("""
+                       SELECT approval_status, COUNT(*) 
+                       FROM Request_approvals_stages
+                       GROUP BY approval_status""")
+        data = cursor.fetchall()
+        conn.close()
+
+        statuses, counts = zip(*data) if data else ([], [])
+        fig = Figure(figsize=(5, 3))
+        ax = fig.add_subplot(111)
+        ax.pie(counts, labels=statuses, autopct="%1.1f%%")
+        ax.set_title("Статусы согласования")
+
+        canvas = FigureCanvas(fig)
+        layout.addWidget(canvas)
+
+        export_btn = QPushButton("Выгрузить в Excel")
+        export_btn.clicked.connect(lambda: self.export_to_excel(data, ["Статус", "Количество"]))
+        layout.addWidget(export_btn)
+
+    def export_to_excel(self, data, columns):
+        file_path, _ = QFileDialog.getSaveFileName(self, "Сохранить отчет", "", "Excel Files (*.xlsx)")
+        if file_path:
+            df = pd.DataFrame(data, columns=columns)
+            df.to_excel(file_path, index=False)

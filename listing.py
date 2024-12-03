@@ -1,8 +1,9 @@
 import os
+
 from docx import Document
-from docx.shared import Pt
-from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
+from docx.oxml.ns import qn
+from docx.shared import Pt
 
 # Путь к проекту
 source_folder = "/Users/arsenijkarpov/Documents/Колледж/3 курс/Курсовые/project"
