@@ -18,7 +18,7 @@ from accept_app.accept_request_registry import AcceptRequestRegistry
 from accept_app.accept_request_viewer import AcceptRequestWidget
 from interfaces.ui_auth_dialog import Ui_Auth_dialog
 from interfaces.ui_mainwindow import Ui_MainWindow
-from reports.reports_widget import ReportWidget
+from reports.reports_widget import ReportWidget, Report1, Report2, Report3, Report4
 from requests_app.request_registry_widget import RequestRegistryWidget
 from requests_app.request_widget import RequestWidget
 from users.user_registry_widget import UserRegistryWidget
@@ -150,6 +150,26 @@ class MainWindow(QMainWindow):
     def open_reports_widget(self):
         w = ReportWidget(self)
         self.tab_widget.addTab(w, "Отчеты")
+        self.tab_widget.setCurrentWidget(w)
+
+    def open_report1_widget(self):
+        w = Report1(self)
+        self.tab_widget.addTab(w, "Отчет")
+        self.tab_widget.setCurrentWidget(w)
+
+    def open_report2_widget(self):
+        w = Report2(self)
+        self.tab_widget.addTab(w, "Отчет")
+        self.tab_widget.setCurrentWidget(w)
+
+    def open_report3_widget(self):
+        w = Report3(self)
+        self.tab_widget.addTab(w, "Отчет")
+        self.tab_widget.setCurrentWidget(w)
+
+    def open_report4_widget(self):
+        w = Report4(self)
+        self.tab_widget.addTab(w, "Отчет")
         self.tab_widget.setCurrentWidget(w)
 
     def open_accept_request_viewer(self, request_id):
