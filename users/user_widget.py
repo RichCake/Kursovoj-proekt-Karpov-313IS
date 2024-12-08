@@ -16,12 +16,12 @@ class UserWidget(QWidget):
 
         self.ui.save_btn.clicked.connect(self.save_user)
         self.ui.close_btn.clicked.connect(parent.close_current_tab)
-        self.ui.delete_btn.clicked.connect(self.delete_request)
+        self.ui.delete_btn.clicked.connect(self.delete_user)
         self.ui.chenge_password_btn.clicked.connect(self.change_password)
 
     def set_is_created(self):
         self.ui.save_btn.clicked.disconnect()
-        self.ui.save_btn.clicked.connect(self.update_request)
+        self.ui.save_btn.clicked.connect(self.update_user)
         self.ui.delete_btn.show()
         self.ui.change_password_frame.show()
         self.ui.login_edit.setDisabled(True)
@@ -65,7 +65,7 @@ class UserWidget(QWidget):
 
         self.parent.status_bar.showMessage("Пользователь сохранен", 3000)
 
-    def update_request(self):
+    def update_user(self):
         first_name, second_name, third_name, position, login, password = self.check_and_return_editable_fields()
         user_id = self.ui.id_ldl.text()
         access_rights = self.ui.access_rights_combobox.currentText()
@@ -103,7 +103,7 @@ class UserWidget(QWidget):
         self.set_is_created()
         self.ui.id_ldl.setText(str(user_id))
 
-    def delete_request(self):
+    def delete_user(self):
         res = QMessageBox.warning(self, "Предупреждение", "Вы уверены, что хотите удалить объект?", QMessageBox.Yes, QMessageBox.No)
         if res == QMessageBox.No:
             return

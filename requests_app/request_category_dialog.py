@@ -46,4 +46,3 @@ class RequestCategoryDialog(QDialog):
                 self.update_list()
             except sqlite3.IntegrityError as err:
                 QMessageBox.critical(self, "Ошибка", "Наименование уже присутствует в базе")
-                print(err)

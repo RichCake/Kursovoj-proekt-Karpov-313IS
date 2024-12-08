@@ -5,8 +5,6 @@ import sys
 from pathlib import Path
 
 import pandas as pd
-
-# from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 from PySide6.QtCore import QDateTime, QFile, Qt, QTextStream
 from PySide6.QtGui import QStandardItem, QStandardItemModel
