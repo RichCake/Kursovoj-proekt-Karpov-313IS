@@ -1,7 +1,7 @@
 import datetime as dt
 import sqlite3
 
-from PySide6.QtWidgets import QDialog, QMessageBox, QTableWidgetItem, QWidget
+from PyQt6.QtWidgets import QDialog, QMessageBox, QTableWidgetItem, QWidget
 
 from accept_app.accept_dialog import AcceptDialog
 from interfaces.ui_create_request import Ui_Request
@@ -51,14 +51,14 @@ class RequestWidget(QWidget):
 
     def open_category_dialog(self):
         dialog = RequestCategoryDialog(self.parent)
-        if dialog.exec() == QDialog.Accepted:
+        if dialog.exec():
             self.setup_category_combobox()
             if dialog.category:
                 self.ui.category_combobox.setCurrentText(dialog.category)
 
     def open_nomenclature_dialog(self):
         dialog = NomenclatureDialog(self.parent)
-        if dialog.exec() == QDialog.Accepted:
+        if dialog.exec():
             if dialog.nomenclature_id:
                 con = sqlite3.connect(self.parent.database_file)
                 cur = con.cursor()
@@ -200,9 +200,9 @@ class RequestWidget(QWidget):
         self.set_is_created(request_id)
 
     def delete_request(self):
-        res = QMessageBox.warning(self, "Предупреждение", "Вы уверены, что хотите удалить объект?", QMessageBox.Yes,
-                                  QMessageBox.No)
-        if res == QMessageBox.No:
+        res = QMessageBox.warning(self, "Предупреждение", "Вы уверены, что хотите удалить объект?", QMessageBox.StandardButton.Yes,
+                                  QMessageBox.StandardButton.No)
+        if res == QMessageBox.StandardButton.No:
             return
 
         con = sqlite3.connect(self.parent.database_file)
@@ -223,7 +223,7 @@ class RequestWidget(QWidget):
             else:
                 return
         dialog = AcceptDialog(self.parent)
-        if dialog.exec() == QDialog.Accepted:
+        if dialog.exec():
             approval_status = "Не согласовано"
             con = sqlite3.connect(self.parent.database_file)
             cur = con.cursor()

@@ -1,7 +1,7 @@
 import sqlite3
 
-from PySide6.QtSql import QSqlRelation, QSqlRelationalTableModel
-from PySide6.QtWidgets import QTableView, QWidget
+from PyQt6.QtSql import QSqlRelation, QSqlRelationalTableModel
+from PyQt6.QtWidgets import QAbstractItemView, QTableView, QWidget
 
 from interfaces.ui_request_registry import Ui_Request_registry
 from utils.models import DateDelegate
@@ -23,7 +23,7 @@ class RequestRegistryWidget(QWidget):
         self.model.select()
 
         self.ui.request_list.setModel(self.model)
-        self.ui.request_list.setEditTriggers(QTableView.EditTriggers.NoEditTriggers)
+        self.ui.request_list.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.ui.request_list.setSelectionBehavior(QTableView.SelectionBehavior.SelectRows)
         self.ui.request_list.hideColumn(0)
         self.ui.request_list.hideColumn(0)

@@ -1,6 +1,6 @@
 import sqlite3
 
-from PySide6.QtWidgets import QMessageBox, QWidget
+from PyQt6.QtWidgets import QMessageBox, QWidget
 
 from interfaces.ui_user_widget import Ui_User_widget
 
@@ -104,8 +104,8 @@ class UserWidget(QWidget):
         self.ui.id_ldl.setText(str(user_id))
 
     def delete_user(self):
-        res = QMessageBox.warning(self, "Предупреждение", "Вы уверены, что хотите удалить объект?", QMessageBox.Yes, QMessageBox.No)
-        if res == QMessageBox.No:
+        res = QMessageBox.warning(self, "Предупреждение", "Вы уверены, что хотите удалить объект?", QMessageBox.StandardButton.Yes, QMessageBox.StandardButton.No)
+        if res == QMessageBox.StandardButton.No:
             return
         user_id = self.ui.id_ldl.text()
 

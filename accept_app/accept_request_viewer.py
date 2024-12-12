@@ -1,8 +1,8 @@
 import sqlite3
 
-from PySide6.QtCore import Qt
-from PySide6.QtSql import QSqlRelation, QSqlRelationalTableModel
-from PySide6.QtWidgets import QDialog, QMessageBox, QTableView, QWidget
+from PyQt6.QtCore import Qt
+from PyQt6.QtSql import QSqlRelation, QSqlRelationalTableModel
+from PyQt6.QtWidgets import QAbstractItemView, QDialog, QMessageBox, QTableView, QWidget
 
 from accept_app.accept_dialog import AcceptDialog
 from interfaces.ui_accept_viewer import Ui_AcceptViewer
@@ -20,7 +20,7 @@ class AcceptRequestWidget(QWidget):
         # Настройка модели
         self.model = QSqlRelationalTableModel(self)
         self.model.setTable("Request_approvals_stages")
-        self.ui.tableView.setEditTriggers(QTableView.EditTriggers.NoEditTriggers)
+        self.ui.tableView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.model.setRelation(6, QSqlRelation("Users", "id", "first_name || ' ' || second_name || ' ' || third_name AS ФИО"))
 
         # Задаем заголовки таблицы
@@ -63,7 +63,7 @@ class AcceptRequestWidget(QWidget):
 
     def add_accept_row(self):
         dialog = AcceptDialog(self.parent)
-        if dialog.exec() == QDialog.Accepted:
+        if dialog.exec():
             approval_status = "Не согласовано"
             con = sqlite3.connect(self.parent.database_file)
             cur = con.cursor()
@@ -93,8 +93,8 @@ class AcceptRequestWidget(QWidget):
         confirm = QMessageBox.question(
             self, "Подтверждение удаления",
             "Вы уверены, что хотите удалить выбранные строки?",
-            QMessageBox.Yes | QMessageBox.No
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
         )
-        if confirm == QMessageBox.Yes:
+        if confirm == QMessageBox.StandardButton.Yes:
             for index in reversed(selected_rows):  # Удаляем строки в обратном порядке
                 self.model.removeRow(index.row())

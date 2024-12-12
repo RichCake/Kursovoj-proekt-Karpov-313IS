@@ -1,7 +1,7 @@
 import sqlite3
 
-from PySide6.QtCore import QDateTime, Qt
-from PySide6.QtWidgets import (
+from PyQt6.QtCore import QDateTime, Qt
+from PyQt6.QtWidgets import (
     QDialog,
     QHBoxLayout,
     QLineEdit,
@@ -71,7 +71,7 @@ class EditableDelegate(QStyledItemDelegate):
 
     def open_nomenclature_window(self, index):
         dialog = NomenclatureDialog(self.parent.parent)
-        if dialog.exec() == QDialog.Accepted:
+        if dialog.exec():
             con = sqlite3.connect(self.parent.database_file)
             cur = con.cursor()
             nomenclature = cur.execute("SELECT * FROM Nomenclature WHERE id=?", (dialog.nomenclature_id,)).fetchone()

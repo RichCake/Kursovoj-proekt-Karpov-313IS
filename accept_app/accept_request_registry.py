@@ -1,11 +1,10 @@
 import datetime as dt
 import sqlite3
 
-from PySide6.QtSql import QSqlRelation, QSqlRelationalTableModel
-from PySide6.QtWidgets import QTableView, QWidget
+from PyQt6.QtSql import QSqlRelation, QSqlRelationalTableModel
+from PyQt6.QtWidgets import QTableView, QWidget, QAbstractItemView
 
 from interfaces.ui_accept_requests_registry import Ui_Accept_requests_registry
-
 from utils.models import DateDelegate
 
 
@@ -43,7 +42,7 @@ class AcceptRequestRegistry(QWidget):
         self.model.select()
 
         self.ui.request_list.setModel(self.model)
-        self.ui.request_list.setEditTriggers(QTableView.EditTriggers.NoEditTriggers)
+        self.ui.request_list.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.ui.request_list.setSelectionBehavior(QTableView.SelectionBehavior.SelectRows)
         self.ui.request_list.hideColumn(0)
         self.ui.request_list.hideColumn(0)
@@ -116,7 +115,7 @@ class AcceptRequestRegistry(QWidget):
         request_id = self.model.data(self.ui.request_list.selectionModel().selectedRows()[0])
         cur.execute("""
                     UPDATE Request_approvals_stages 
-                    SET comment=?, approval_status=? approved_at=?
+                    SET comment=?, approval_status=?, approved_at=?
                     WHERE acceptor_id=? AND request_id=?;
                     """, (comment, "Отклонено", approved_at, self.parent.user_id, request_id))
         con.commit()

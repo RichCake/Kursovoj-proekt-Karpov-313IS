@@ -6,10 +6,10 @@ from pathlib import Path
 
 import pandas as pd
 from matplotlib.figure import Figure
-from PySide6.QtCore import QDateTime, QFile, Qt, QTextStream
-from PySide6.QtGui import QStandardItem, QStandardItemModel
-from PySide6.QtSql import QSqlDatabase, QSqlRelation, QSqlRelationalTableModel
-from PySide6.QtWidgets import (
+from PyQt6.QtCore import QDateTime, QFile, Qt, QTextStream
+from PyQt6.QtGui import QStandardItem, QStandardItemModel
+from PyQt6.QtSql import QSqlDatabase, QSqlRelation, QSqlRelationalTableModel
+from PyQt6.QtWidgets import (
     QApplication,
     QDialog,
     QFileDialog,
@@ -51,7 +51,16 @@ from users.user_registry_widget import UserRegistryWidget
 from users.user_widget import UserWidget
 from utils.models import DateDelegate, ReadOnlyDelegate
 
-BASE_DIR = Path(__file__).resolve().parent
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 
 class AuthDialog(QDialog):
@@ -91,11 +100,11 @@ class AuthDialog(QDialog):
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.database_file = os.path.join(BASE_DIR, "database.db")
+        self.database_file = resource_path("database.db")
         if not os.path.isfile(self.database_file):
             create_db(self.database_file)
         dialog = AuthDialog(self)
-        if dialog.exec() == QDialog.Accepted:
+        if dialog.exec():
             self.user_login = dialog.user
             self.purchaser = dialog.purchaser
             self.user_id = dialog.id
@@ -130,8 +139,8 @@ class MainWindow(QMainWindow):
         self.ui.exit_btn.clicked.connect(self.exit_app)
 
     def exit_app(self):
-        ans = QMessageBox.warning(self, "Предупреждение", "Вы хотите выйти из приложения?", QMessageBox.Yes | QMessageBox.No)
-        if ans == QMessageBox.Yes:
+        ans = QMessageBox.warning(self, "Предупреждение", "Вы хотите выйти из приложения?", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        if ans == QMessageBox.StandardButton.Yes:
             sys.exit()
 
     def open_request_creation(self):
@@ -207,10 +216,13 @@ class MainWindow(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    file = QFile("style.qss")
-    file.open(QFile.ReadOnly | QFile.Text)
-    qss = QTextStream(file)
-    app.setStyleSheet(qss.readAll())
+    try:
+        File = open(resource_path("style.qss"),"r")
+        with File:
+            qss = File.read()
+            app.setStyleSheet(qss)
+    except FileNotFoundError as ex:
+        print("Файл со стилями не найден:", str(ex))
 
     ex = MainWindow()
     ex.show()

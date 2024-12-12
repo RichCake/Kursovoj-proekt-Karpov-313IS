@@ -1,6 +1,6 @@
 import sqlite3
 
-from PySide6.QtWidgets import QDialog, QMessageBox, QTableView, QTableWidgetItem
+from PyQt6.QtWidgets import QDialog, QMessageBox, QTableView, QTableWidgetItem, QAbstractItemView
 
 from interfaces.ui_nomenclature_dialog import Ui_Nomenclature_dialog
 
@@ -14,7 +14,7 @@ class NomenclatureDialog(QDialog):
         self.update_list()
 
         self.ui.tableWidget.hideColumn(0)
-        self.ui.tableWidget.setEditTriggers(QTableView.EditTriggers.NoEditTriggers)
+        self.ui.tableWidget.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
 
         self.ui.pushButton.clicked.connect(self.add_nomenclature)
         self.ui.buttonBox.accepted.connect(self.select_nomenclature)

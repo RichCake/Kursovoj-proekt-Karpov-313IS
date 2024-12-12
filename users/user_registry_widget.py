@@ -1,5 +1,5 @@
-from PySide6.QtSql import QSqlRelationalTableModel
-from PySide6.QtWidgets import QTableView, QWidget
+from PyQt6.QtSql import QSqlRelationalTableModel
+from PyQt6.QtWidgets import QAbstractItemView, QTableView, QWidget
 
 from interfaces.ui_user_registry_widget import Ui_User_registry
 
@@ -16,7 +16,7 @@ class UserRegistryWidget(QWidget):
         self.model.select()
 
         self.ui.user_list.setModel(self.model)
-        self.ui.user_list.setEditTriggers(QTableView.EditTriggers.NoEditTriggers)
+        self.ui.user_list.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.ui.user_list.setSelectionBehavior(QTableView.SelectionBehavior.SelectRows)
         self.ui.user_list.hideColumn(0)
         self.ui.user_list.hideColumn(6)

@@ -3,7 +3,7 @@ import sqlite3
 import pandas as pd
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
-from PySide6.QtWidgets import (
+from PyQt6.QtWidgets import (
     QFileDialog,
     QHBoxLayout,
     QPushButton,

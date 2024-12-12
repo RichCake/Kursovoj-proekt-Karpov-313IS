@@ -1,6 +1,6 @@
-from PySide6.QtGui import QStandardItem, QStandardItemModel
-from PySide6.QtSql import QSqlRelationalTableModel
-from PySide6.QtWidgets import QDialog, QMessageBox, QTableView
+from PyQt6.QtGui import QStandardItem, QStandardItemModel
+from PyQt6.QtSql import QSqlRelationalTableModel
+from PyQt6.QtWidgets import QAbstractItemView, QDialog, QMessageBox, QTableView
 
 from interfaces.ui_accept_dialog import Ui_Accept_dialog
 
@@ -18,7 +18,7 @@ class AcceptDialog(QDialog):
         self.user_model.select()
 
         self.ui.user_table.setModel(self.user_model)
-        self.ui.user_table.setEditTriggers(QTableView.EditTriggers.NoEditTriggers)
+        self.ui.user_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.ui.user_table.setSelectionBehavior(QTableView.SelectionBehavior.SelectRows)
         self.ui.user_table.hideColumn(0)
         self.ui.user_table.hideColumn(5)
@@ -30,7 +30,7 @@ class AcceptDialog(QDialog):
         self.accept_model = QStandardItemModel(0, 4, self)
         self.accept_model.setHorizontalHeaderLabels(["ID", "Имя", "Фамилия", "Отчество"])
         self.ui.accept_table.setModel(self.accept_model)
-        self.ui.accept_table.setEditTriggers(QTableView.EditTriggers.NoEditTriggers)
+        self.ui.accept_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.ui.accept_table.setSelectionBehavior(QTableView.SelectionBehavior.SelectRows)
         self.ui.accept_table.hideColumn(0)
         self.ui.accept_table.resizeColumnsToContents()
