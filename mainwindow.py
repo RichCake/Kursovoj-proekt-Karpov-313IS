@@ -112,9 +112,6 @@ class MainWindow(QMainWindow):
         if not self.purchaser:
             self.ui.groupBox_3.hide()
             self.ui.groupBox_4.hide()
-            self.ui.create_invoice_btn.hide()
-            self.ui.invoice_registry_btn.hide()
-            self.ui.contract_registry_btn.hide()
 
         self.tab_widget = QTabWidget()
         self.tab_widget.setTabBarAutoHide(False)
