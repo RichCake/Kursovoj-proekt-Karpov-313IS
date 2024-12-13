@@ -111,7 +111,7 @@ class MainWindow(QMainWindow):
         else:
             sys.exit()
         self.db = QSqlDatabase.addDatabase("QSQLITE")
-        self.db.setDatabaseName("database.db")
+        self.db.setDatabaseName(self.database_file)
         self.db.open()
 
         self.ui = Ui_MainWindow()
